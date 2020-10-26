@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NewPost</string>
+    <string name="register_phone">请输入手机号</string>
+    <string name="register_code">请输入验证码</string>
+</resources>
