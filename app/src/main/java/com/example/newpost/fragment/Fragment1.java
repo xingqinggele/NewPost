@@ -25,7 +25,6 @@ import butterknife.Unbinder;
  */
 public class Fragment1 extends Fragment {
     Unbinder unbinder;
-
     //客服
     @BindView(R.id.main_home_img_cust)
     ImageView mainHomeImgCust;
