@@ -44,7 +44,7 @@
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">@dimen/dp_4</item>
         <item name="android:textColor">@drawable/rbtn_main_txt</item>
-        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
 </resources>

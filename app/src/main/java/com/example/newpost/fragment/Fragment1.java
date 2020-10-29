@@ -4,119 +4,123 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.example.newpost.R;
-import com.example.newpost.adapter.CeshiAdapter;
-import com.example.newpost.bean.CeshiBean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.newpost.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * 作者: qgl
  * 创建日期：2020/10/21
  * 描述:fragment1
  */
-public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener{
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.recycle)
-    RecyclerView recycle;
-    @BindView(R.id.swipe)
-    SwipeRefreshLayout swipe;
-    private List<CeshiBean> list = new ArrayList<>();
-    private CeshiAdapter ceshiAdapter;
-    private int mCount = 1;
+public class Fragment1 extends Fragment {
+    Unbinder unbinder;
+    //客服
+    @BindView(R.id.main_home_img_cust)
+    ImageView mainHomeImgCust;
+    //消息
+    @BindView(R.id.main_home_img_mess)
+    ImageView mainHomeImgMess;
+    //金额
+    @BindView(R.id.main_home_text_mony)
+    TextView mainHomeTextMony;
+    //查看明细
+    @BindView(R.id.main_home_txt_detail)
+    TextView mainHomeTxtDetail;
+    // 首页时间
+    @BindView(R.id.main_home_txt_time)
+    TextView mainHomeTxtTime;
+    // 交易额，笔数
+    @BindView(R.id.main_home_txt_trading_num)
+    TextView mainHomeTxtTradingNum;
+    // 分润
+    @BindView(R.id.main_home_txt_profits_price)
+    TextView mainHomeTxtProfitsPrice;
+    // 返现
+    @BindView(R.id.main_home_txt_back_price)
+    TextView mainHomeTxtBackPrice;
+    // 通告
+    @BindView(R.id.main_home_txt_announcement)
+    TextView mainHomeTxtAnnouncement;
+    // 商户入驻
+    @BindView(R.id.main_home_line_merchants)
+    LinearLayout mainHomeLineMerchants;
+    // 交易管理
+    @BindView(R.id.main_home_line_trading)
+    LinearLayout mainHomeLineTrading;
+    // 收益管理
+    @BindView(R.id.main_home_line_earnings)
+    LinearLayout mainHomeLineEarnings;
+    // 终端管理
+    @BindView(R.id.main_home_line_terminal)
+    LinearLayout mainHomeLineTerminal;
+    // 体现
+    @BindView(R.id.main_home_line_withdrawal)
+    LinearLayout mainHomeLineWithdrawal;
+    // 拓展合作方
+    @BindView(R.id.main_home_line_cooper)
+    LinearLayout mainHomeLineCooper;
+    // 实战讲堂
+    @BindView(R.id.main_home_line_hall)
+    LinearLayout mainHomeLineHall;
+    // 商户入驻
+    @BindView(R.id.main_home_line_stayin)
+    LinearLayout mainHomeLineStayin;
+
     public static Fragment1 newInstance(String requestJson) {
         Fragment1 fragment = new Fragment1();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1, container, false);
-        ButterKnife.bind(this, view);
-        iniTview();
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
-    //初始化控件
-    public void iniTview(){
-        title.setText("标题");
-        swipe.setOnRefreshListener(this);
-        ceshiAdapter = new CeshiAdapter(R.layout.ceshi_list_item, list);
-        //打开加载动画
-        ceshiAdapter.openLoadAnimation();
-        //设置启用加载更多
-        ceshiAdapter.setEnableLoadMore(true);
-        //设置为加载更多监听器
-        ceshiAdapter.setOnLoadMoreListener(this, recycle);
-        // 设置视图
-        ceshiAdapter.setEmptyView(LayoutInflater.from(getActivity()).inflate(R.layout.list_empty, null));
-        recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycle.setAdapter(ceshiAdapter);
-        // 点击item事件
-        ceshiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(getActivity(),"点击了" + list.get(position).getTitle(), Toast.LENGTH_LONG).show();
-            }
-        });
-        getData();
-    }
-    /**
-     * 模拟数据
-     */
-    public void getData() {
-        swipe.setRefreshing(false);
-        for (int i = 1; i <= 12; i++) {
-            CeshiBean bean = new CeshiBean();
-            bean.setTitle(i + "标题");
-            list.add(bean);
+    @OnClick({R.id.main_home_img_cust, R.id.main_home_img_mess,R.id.main_home_txt_detail,R.id.main_home_line_merchants,R.id.main_home_line_trading,R.id.main_home_line_earnings
+    ,R.id.main_home_line_terminal,R.id.main_home_line_withdrawal,R.id.main_home_line_cooper,R.id.main_home_line_hall,R.id.main_home_line_stayin})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.main_home_img_cust:
+                break;
+            case R.id.main_home_img_mess:
+                break;
+            case R.id.main_home_txt_detail:
+                break;
+            case R.id.main_home_line_merchants:
+                break;
+            case R.id.main_home_line_trading:
+                break;
+            case R.id.main_home_line_earnings:
+                break;
+            case R.id.main_home_line_terminal:
+                break;
+            case R.id.main_home_line_withdrawal:
+                break;
+            case R.id.main_home_line_cooper:
+                break;
+            case R.id.main_home_line_hall:
+                break;
+            case R.id.main_home_line_stayin:
+                break;
         }
-        if (list.size() < 10) {
-            ceshiAdapter.loadMoreEnd();
-        } else {
-            ceshiAdapter.loadMoreComplete();
-        }
-        ceshiAdapter.notifyDataSetChanged();
     }
-    /**
-     * 下拉刷新
-     */
     @Override
-    public void onRefresh() {
-        swipe.setRefreshing(true);
-        setRefresh();
-        getData();
-    }
-    /**
-     * 上拉加载
-     */
-    @Override
-    public void onLoadMoreRequested() {
-//        mCount = mCount + 1;
-//        initData();
-        ceshiAdapter.loadMoreEnd();
-    }
-    /**
-     * 处理事件
-     */
-    private void setRefresh() {
-        list.clear();
-        mCount = 1;
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

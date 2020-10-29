@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.newpost.R;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 /**
  * 作者: qgl
@@ -17,6 +20,7 @@ import com.example.newpost.R;
  * 描述:fragment1
  */
 public class Fragment3 extends Fragment {
+    private Unbinder unbinder;
     public static Fragment3 newInstance(String requestJson) {
         Fragment3 fragment = new Fragment3();
         Bundle args = new Bundle();
@@ -28,6 +32,13 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3, container, false);
+        unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
