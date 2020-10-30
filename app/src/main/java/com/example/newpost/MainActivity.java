@@ -10,20 +10,12 @@ import com.example.newpost.base.BaseActivity;
 import com.example.newpost.fragment.Fragment1;
 import com.example.newpost.fragment.Fragment2;
 import com.example.newpost.fragment.Fragment3;
-
-import butterknife.BindView;
-
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
-    @BindView(R.id.content)
-    FrameLayout content;
-    @BindView(R.id.main_rb1)
-    RadioButton mainRb1;
-    @BindView(R.id.main_rb2)
-    RadioButton mainRb2;
-    @BindView(R.id.main_rb3)
-    RadioButton mainRb3;
-    @BindView(R.id.rg_footer)
-    RadioGroup rgFooter;
+    private FrameLayout content;
+    private RadioButton mainRb1;
+    private RadioButton mainRb2;
+    private RadioButton mainRb3;
+    private RadioGroup rgFooter;
     private FragmentTransaction transaction;
     private long mPressedTime = 0;
     private Fragment1 fragment1;
@@ -37,6 +29,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initView() {
+        content = findViewById(R.id.content);
+        mainRb1 = findViewById(R.id.main_rb1);
+        mainRb2 = findViewById(R.id.main_rb2);
+        mainRb3 = findViewById(R.id.main_rb3);
+        rgFooter = findViewById(R.id.rg_footer);
         rgFooter.setOnCheckedChangeListener(this);
         rgFooter.check(R.id.main_rb1);
     }

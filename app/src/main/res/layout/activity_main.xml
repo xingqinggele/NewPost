@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="vertical">
 
         <TextView
@@ -40,7 +40,7 @@
                 android:id="@+id/main_rb2"
                 style="@style/footer_radioButton_style"
                 android:drawableTop="@drawable/main_low_tab2"
-                android:text="福利" />
+                android:text="合作方" />
 
             <RadioButton
                 android:id="@+id/main_rb3"

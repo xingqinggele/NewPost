@@ -11,13 +11,21 @@
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config"
         android:name=".app.MyApp">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        商户管理-->
+        <activity android:name=".business_manger.MerchantsActivity"/>
+<!--        新增选择页商户-->
+        <activity android:name=".business_manger.NewMerchantsActivity"/>
+<!--        新增小微商户-->
+        <activity android:name=".business_manger.Merchants_DatailActivity"/>
     </application>
 
 </manifest>

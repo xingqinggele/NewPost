@@ -9,4 +9,6 @@
     <color name="primary">#2196F3</color>
     <color name="colorTheme">#0053CB</color>
     <color name="color_xian">#ccccd5</color>
+    <color name="home_merchant">#165e8e</color>
+    <color name="main_fragment2">#2d5d8a</color>
 </resources>

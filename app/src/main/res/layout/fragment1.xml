@@ -13,7 +13,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:scaleType="center"
+                android:scaleType="fitXY"
                 android:src="@mipmap/main_home_1"
                 android:layout_width="match_parent"
                 android:layout_height="254dp"/>
@@ -327,7 +327,6 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginBottom="23dp"
-
                     android:layout_marginTop="24dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"

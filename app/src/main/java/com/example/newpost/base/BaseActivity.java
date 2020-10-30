@@ -17,7 +17,6 @@ import com.gyf.barlibrary.ImmersionBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 
 /**
  * Created: qgl
@@ -41,7 +40,6 @@ public abstract class BaseActivity extends FragmentActivity implements ViewTreeO
             activitys = new ArrayList<Activity>();
         }
         activitys.add(this);
-        ButterKnife.bind(this);
         loadDialog = new LoadingDialog(this);
         initView();
         initData();

@@ -51,9 +51,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.14.1'
     //主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。
     implementation 'de.greenrobot:eventbus:2.4.0'
-    //butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     //新增库沉浸式导航栏
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 

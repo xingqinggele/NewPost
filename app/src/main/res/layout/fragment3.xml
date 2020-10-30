@@ -123,6 +123,7 @@
                         android:layout_weight="1"
                         tools:ignore="Suspicious0dp">
                         <TextView
+                            android:id="@+id/main_me_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="8,688.68"
@@ -156,6 +157,7 @@
                         android:layout_weight="1"
                         tools:ignore="Suspicious0dp">
                         <TextView
+                            android:id="@+id/main_me_binding"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="已绑定>"
@@ -184,6 +186,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/main_me_password"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"
@@ -219,6 +222,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/main_me_opinion"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"
@@ -253,6 +257,7 @@
 
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/main_me_about_us"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"
@@ -295,6 +300,7 @@
             android:layout_height="1dp"/>
 
         <RelativeLayout
+            android:id="@+id/main_me_clean"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"
@@ -344,6 +350,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/main_me_version"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"
@@ -368,6 +375,7 @@
                 />
 
             <TextView
+                android:id="@+id/main_me_version_code"
                 android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/main_me_version_img"
@@ -398,6 +406,7 @@
             android:layout_height="1dp"/>
 
         <RelativeLayout
+            android:id="@+id/main_me_out_login"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="28dp"
             android:orientation="horizontal"

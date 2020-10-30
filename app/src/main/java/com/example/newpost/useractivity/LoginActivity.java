@@ -17,8 +17,6 @@ import com.example.newpost.net.RequestParams;
 import com.example.newpost.net.ResponseCallback;
 import com.gyf.barlibrary.ImmersionBar;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * 作者: qgl
@@ -26,12 +24,12 @@ import butterknife.OnClick;
  * 描述:登录界面
  */
 public class LoginActivity extends BaseActivity {
-    @BindView(R.id.et_userName)
-    EditText etUserName;
-    @BindView(R.id.et_pass)
-    EditText etPass;
-    @BindView(R.id.bt_login)
-    Button btLogin;
+//    @BindView(R.id.et_userName)
+//    EditText etUserName;
+//    @BindView(R.id.et_pass)
+//    EditText etPass;
+//    @BindView(R.id.bt_login)
+//    Button btLogin;
     private ImmersionBar mImmersionBar;//状态栏沉浸
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -60,26 +58,26 @@ public class LoginActivity extends BaseActivity {
     protected void initData() {
 
     }
-    @OnClick(R.id.bt_login)
-    public void onViewClicked() {
-        if (TextUtils.isEmpty(etUserName.getText().toString().trim())){
-            showToast("请输入账户");
-            return;
-        }
-        if (TextUtils.isEmpty(etPass.getText().toString().trim())){
-            showToast("请输入密码");
-            return;
-        }
-        getLogin();
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-    }
+//    @OnClick(R.id.bt_login)
+//    public void onViewClicked() {
+//        if (TextUtils.isEmpty(etUserName.getText().toString().trim())){
+//            showToast("请输入账户");
+//            return;
+//        }
+//        if (TextUtils.isEmpty(etPass.getText().toString().trim())){
+//            showToast("请输入密码");
+//            return;
+//        }
+//        getLogin();
+//        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//    }
     /**
      * 登录方法
      */
     public void getLogin(){
         RequestParams params = new RequestParams();
-        params.put("user",etUserName.getText().toString().trim());
-        params.put("pass",etPass.getText().toString().trim());
+//        params.put("user",etUserName.getText().toString().trim());
+//        params.put("pass",etPass.getText().toString().trim());
         HttpRequest.getLogin(params, new ResponseCallback() {
             @Override
             public void onSuccess(Object responseObj) {
