@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    //图片选择器
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     //导航栏
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
