@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:id="@+id/liner"
+   >
+
+    <TextView
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="传统POS返现"
+        android:textColor="#787878"
+        android:textSize="15sp"
+        />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0.3825(%)"
+        android:textColor="#FF5075"
+        android:textSize="15sp"
+        />
+
+ <TextView
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0.3825(%)-0.45"
+        android:textColor="#787878"
+        android:textSize="10sp"
+        />
+
+
+
+</LinearLayout>
+
+
+    <TextView
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0.3825(%)"
+        android:textColor="#787878"
+        android:textSize="15sp"
+        />
+
+
+</LinearLayout>

@@ -1,182 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F3F3F3">
+    android:background="#F3F3F3"
+    android:orientation="vertical">
 
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-        <ImageView
-            android:scaleType="fitXY"
-            android:src="@mipmap/home_merchant_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:padding="5dp"
-        android:id="@+id/iv_back"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/back_lift_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:layout_marginTop="21dp"
-        android:layout_marginLeft="25dp"
-        android:layout_toRightOf="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="商户管理"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        />
-
-</RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/merchant_new"
-        android:background="@drawable/main_home_line_bg"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="87dp">
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/home_merchants_img_my1"
-        android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/home_merchant_new"
-        android:layout_width="24dp"
-        android:layout_height="24dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/home_merchant_top_img" />
+
+        <LinearLayout
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:padding="5dp"
+                android:src="@mipmap/back_left" />
+
+        </LinearLayout>
+
 
         <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_toRightOf="@+id/iv_back"
+            android:text="商户管理"
+            android:textColor="@color/post_while"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/merchant_relative_new"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/main_home_line_bg">
+
+        <ImageView
+            android:id="@+id/merchant_iv_my1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/home_merchant_new" />
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/merchant_tv_my1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="14dp"
-            android:id="@+id/home_merchants_txt_my1"
-            android:layout_toRightOf="@+id/home_merchants_img_my1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/merchant_iv_my1"
             android:text="新增商户"
-            android:textColor="#ff333333"
-            android:textSize="17sp"
-            />
+            android:textColor="#333333"
+            android:textSize="17sp" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_alignLeft="@+id/home_merchants_txt_my1"
-            android:layout_below="@+id/home_merchants_txt_my1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/merchant_tv_my1"
+            android:layout_alignLeft="@+id/merchant_tv_my1"
+            android:layout_marginTop="10dp"
             android:text="商户进件，包括填写商户信息，结算信息等"
             android:textColor="#ff8b8b8b"
-            android:textSize="13sp"
-            />
+            android:textSize="12sp" />
+
         <ImageView
-            android:layout_marginRight="7dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/main_me_back_right"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/me_back_right" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@drawable/main_home_line_bg"
-        android:layout_marginRight="20dp"
+        android:id="@+id/merchant_relative_query"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="87dp">
+        android:layout_marginRight="20dp"
+        android:background="@drawable/main_home_line_bg">
 
         <ImageView
-            android:id="@+id/home_merchants_img_my2"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/home_merchant_query"
+            android:id="@+id/merchant_iv_my2"
             android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/home_merchant_query" />
 
         <TextView
+            android:textStyle="bold"
+            android:id="@+id/merchant_tv_my2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="14dp"
-            android:id="@+id/home_merchants_txt_my2"
-            android:layout_toRightOf="@+id/home_merchants_img_my2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/merchant_iv_my2"
             android:text="商户查询"
-            android:textColor="#ff333333"
-            android:textSize="17sp"
-            />
+            android:textColor="#333333"
+            android:textSize="17sp" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_alignLeft="@+id/home_merchants_txt_my2"
-            android:layout_below="@+id/home_merchants_txt_my2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/merchant_tv_my2"
+            android:layout_alignLeft="@+id/merchant_tv_my2"
+            android:layout_marginTop="10dp"
             android:text="已进件商户情况，商户基本信息与刷够返等"
             android:textColor="#ff8b8b8b"
-            android:textSize="13sp"
-            />
+            android:textSize="12sp" />
+
         <ImageView
-            android:layout_marginRight="7dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/main_me_back_right"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/me_back_right" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@drawable/main_home_line_bg"
-        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="87dp">
+        android:layout_marginRight="20dp"
+        android:background="@drawable/main_home_line_bg">
 
         <ImageView
-            android:id="@+id/home_merchants_img_my3"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/home_merchant_change"
+            android:id="@+id/merchantiv_my3"
             android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/home_merchant_change" />
 
         <TextView
+            android:textStyle="bold"
+            android:id="@+id/merchant_tv_my3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="14dp"
-            android:id="@+id/home_merchants_txt_my3"
-            android:layout_toRightOf="@+id/home_merchants_img_my3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/merchantiv_my3"
             android:text="商户变更"
-            android:textColor="#ff333333"
-            android:textSize="17sp"
-            />
+            android:textColor="#333333"
+            android:textSize="17sp" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_alignLeft="@+id/home_merchants_txt_my3"
-            android:layout_below="@+id/home_merchants_txt_my3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/merchant_tv_my3"
+            android:layout_alignLeft="@+id/merchant_tv_my3"
+            android:layout_marginTop="10dp"
             android:text="变更商户信息及补传图片"
             android:textColor="#ff8b8b8b"
-            android:textSize="13sp"
-            />
+            android:textSize="12sp" />
+
         <ImageView
-            android:layout_marginRight="7dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/main_me_back_right"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/me_back_right" />
     </RelativeLayout>
 
 </LinearLayout>

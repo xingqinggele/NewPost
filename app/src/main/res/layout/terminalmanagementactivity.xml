@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F3F3F3">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:src="@mipmap/merchant_detail_top_img"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <LinearLayout
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:padding="5dp"
+                        android:src="@mipmap/back_left" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_marginTop="21dp"
+                    android:layout_toRightOf="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="终端管理"
+                    android:textColor="@color/post_while"
+                    android:textSize="18sp"
+                    />
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_home_line_bg"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/terminal_manage_tv_number1"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2,723"
+                    android:textColor="#ff333333"
+                    android:textSize="32sp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/terminal_manage_line1"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/terminal_manage_tv_number1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_centerVertical="true"
+                        android:background="#186090"
+                        android:layout_width="4dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总终端数(台)"
+                        android:textColor="#ff4e4e4e"
+                        android:textSize="15sp"
+                        />
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="18dp"
+                        android:src="@mipmap/terminalmanagement_img1"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/terminal_manage_v1"
+                    android:layout_marginTop="17dp"
+                    app:layout_constraintTop_toBottomOf="@+id/terminal_manage_line1"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="#F3F3F3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/terminal_manage_tv_number2"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginLeft="15dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/terminal_manage_v1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,869"
+                    android:textColor="#ff333333"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginRight="120dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/terminal_manage_tv_number2"
+                    android:id="@+id/terminal_manage_tv_number3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,833"
+                    android:textColor="#ff333333"
+                    android:textSize="18sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/terminal_manage_v2"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/terminal_manage_tv_number3"
+                    android:layout_marginLeft="12dp"
+                    android:background="#186090"
+                    android:layout_width="16dp"
+                    android:layout_height="4dp"/>
+
+                <TextView
+                    android:layout_marginRight="12dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/terminal_manage_tv_number3"
+                    app:layout_constraintTop_toTopOf="@+id/terminal_manage_v2"
+                    android:id="@+id/terminal_manage_v3"
+                    android:background="#186090"
+                    android:layout_width="16dp"
+                    android:layout_height="4dp"/>
+
+                <TextView
+                    android:id="@+id/terminal_manage_t1"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="13dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/terminal_manage_v2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总开通数(台)"
+                    android:textColor="#ff4e4e4e"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="35dp"
+                    android:id="@+id/terminal_manage_t2"
+                    app:layout_constraintLeft_toLeftOf="@+id/terminal_manage_v3"
+                    app:layout_constraintTop_toTopOf="@+id/terminal_manage_t1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总开通数(台)"
+                    android:textColor="#ff4e4e4e"
+                    android:textSize="15sp"
+                    />
+
+                <ImageView
+                    app:layout_constraintBottom_toBottomOf="@+id/terminal_manage_t2"
+                    android:layout_marginLeft="24dp"
+                    app:layout_constraintLeft_toRightOf="@+id/terminal_manage_t2"
+                    app:layout_constraintTop_toTopOf="@+id/terminal_manage_t2"
+                    android:src="@mipmap/terminalmanagement_img1"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="21dp"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/main_home_line_bg"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terminal_manage_iv1"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/terminalmanagement_query"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/terminal_manage_t3"
+                        android:layout_marginLeft="27dp"
+                        android:layout_toRightOf="@+id/terminal_manage_iv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="终端查询"
+                        android:textColor="#ff333333"
+                        android:textSize="21sp"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="14dp"
+                        android:layout_alignLeft="@+id/terminal_manage_t3"
+                        android:layout_below="@+id/terminal_manage_t3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="查询名下终端具体状态"
+                        android:textColor="#ff686868"
+                        android:textSize="13sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="13dp"
+                        android:src="@mipmap/me_back_right" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terminal_manage_iv2"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/terminalmanagement_transfer"
+                        android:layout_width="27dp"
+                        android:layout_height="22dp"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/terminal_manage_t4"
+                        android:layout_marginLeft="27dp"
+                        android:layout_toRightOf="@+id/terminal_manage_iv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="终端划拨"
+                        android:textColor="#ff333333"
+                        android:textSize="21sp"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="14dp"
+                        android:layout_alignLeft="@+id/terminal_manage_t4"
+                        android:layout_below="@+id/terminal_manage_t4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="向合作方划拨终端"
+                        android:textColor="#ff686868"
+                        android:textSize="13sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="13dp"
+                        android:src="@mipmap/me_back_right" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terminal_manage_iv3"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/terminalmanagement_callback"
+                        android:layout_width="27dp"
+                        android:layout_height="22dp"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/terminal_manage_t5"
+                        android:layout_marginLeft="27dp"
+                        android:layout_toRightOf="@+id/terminal_manage_iv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="终端回调"
+                        android:textColor="#ff333333"
+                        android:textSize="21sp"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="14dp"
+                        android:layout_alignLeft="@+id/terminal_manage_t5"
+                        android:layout_below="@+id/terminal_manage_t5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="将划拨的终端回调至本级"
+                        android:textColor="#ff686868"
+                        android:textSize="13sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="13dp"
+                        android:src="@mipmap/me_back_right" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terminal_manage_iv4"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/terminalmanagement_setup"
+                        android:layout_width="27dp"
+                        android:layout_height="30dp"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/terminal_manage_t6"
+                        android:layout_marginLeft="27dp"
+                        android:layout_toRightOf="@+id/terminal_manage_iv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="终端设置"
+                        android:textColor="#ff333333"
+                        android:textSize="21sp"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="14dp"
+                        android:layout_alignLeft="@+id/terminal_manage_t6"
+                        android:layout_below="@+id/terminal_manage_t6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="修改各终端对应费率模板"
+                        android:textColor="#ff686868"
+                        android:textSize="13sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="13dp"
+                        android:src="@mipmap/me_back_right" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terminal_manage_iv5"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/terminalmanagement_enough"
+                        android:layout_width="27dp"
+                        android:layout_height="25dp"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/terminal_manage_t7"
+                        android:layout_marginLeft="27dp"
+                        android:layout_toRightOf="@+id/terminal_manage_iv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="刷够返设置"
+                        android:textColor="#ff333333"
+                        android:textSize="21sp"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="14dp"
+                        android:layout_alignLeft="@+id/terminal_manage_t7"
+                        android:layout_below="@+id/terminal_manage_t7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="修改各终端刷够返模式"
+                        android:textColor="#ff686868"
+                        android:textSize="13sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="13dp"
+                        android:src="@mipmap/me_back_right" />
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>

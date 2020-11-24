@@ -2,14 +2,26 @@ package com.example.newpost;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.example.newpost.base.BaseActivity;
-import com.example.newpost.fragment.Fragment1;
-import com.example.newpost.fragment.Fragment2;
-import com.example.newpost.fragment.Fragment3;
+import com.example.newpost.fragment.HomeFragment;
+import com.example.newpost.fragment.CooperFragment;
+import com.example.newpost.fragment.MeFragment;
+import com.example.newpost.me_fragment.MeChangePassWordActivity;
+import com.example.newpost.net.HttpRequest;
+import com.example.newpost.net.OkHttpException;
+import com.example.newpost.net.RequestParams;
+import com.example.newpost.net.ResponseCallback;
+import com.example.newpost.useractivity.LoginActivity;
+import com.example.newpost.utils.SPUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private FrameLayout content;
     private RadioButton mainRb1;
@@ -18,9 +30,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private RadioGroup rgFooter;
     private FragmentTransaction transaction;
     private long mPressedTime = 0;
-    private Fragment1 fragment1;
-    private Fragment2 fragment2;
-    private Fragment3 fragment3;
+    private HomeFragment fragment1;
+    private CooperFragment fragment2;
+    private MeFragment fragment3;
 
     @Override
     protected int getLayoutId() {
@@ -29,6 +41,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initView() {
+        getTenXunKey();
         content = findViewById(R.id.content);
         mainRb1 = findViewById(R.id.main_rb1);
         mainRb2 = findViewById(R.id.main_rb2);
@@ -52,7 +65,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.main_rb1:
 
                 if (fragment1 == null) {
-                    fragment1 = new Fragment1().newInstance("");
+                    fragment1 = new HomeFragment().newInstance("");
                     transaction.add(R.id.content, fragment1);
                 } else {
                     transaction.show(fragment1);
@@ -61,7 +74,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.main_rb2:
 
                 if (fragment2 == null) {
-                    fragment2 = new Fragment2().newInstance("");
+                    fragment2 = new CooperFragment().newInstance("");
                     transaction.add(R.id.content, fragment2);
                 } else {
                     transaction.show(fragment2);
@@ -70,7 +83,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.main_rb3:
 
                 if (fragment3 == null) {
-                    fragment3 = new Fragment3().newInstance("");
+                    fragment3 = new MeFragment().newInstance("");
                     transaction.add(R.id.content, fragment3);
                 } else {
                     transaction.show(fragment3);
@@ -96,7 +109,52 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             mPressedTime = mNowTime;
         } else {//退出程序
-            exitApp(this);
+            this.finish();
         }
     }
+
+    /**
+     * 获取腾讯key存储到本地
+     */
+    public void getTenXunKey(){
+        RequestParams params = new RequestParams();
+        HttpRequest.getTenXunKey(params, SPUtils.get(MainActivity.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    JSONObject result = new JSONObject(responseObj.toString());
+                    JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                    if (data.getString("SecretKey") !=null && !data.getString("SecretKey").isEmpty()){
+                        SPUtils.put(MainActivity.this, "secretId", data.getString("SecretId"));
+                        SPUtils.put(MainActivity.this, "secretKey", data.getString("SecretKey"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                if (failuer.getEcode() == 401) {
+                    showToast("登录过期，请重新登录");
+                    // 退出登录,清除本地数据
+                    SPUtils.clear(mContext);
+                    exitApp(MainActivity.this);
+                } else {
+                    showToast(failuer.getEmsg());
+                }
+            }
+        });
+
+
+
+    }
+
+
+
+
+
+
+
 }

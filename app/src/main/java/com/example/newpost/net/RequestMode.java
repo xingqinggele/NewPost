@@ -24,16 +24,26 @@ public class RequestMode {
   }
 
   /**
-   * POST请求
+   * POST请求 转换的
    * @param url URL请求地址
    * @param params 入参
    * @param callback 回调接口
    * @param clazz 需要解析的实体类
    */
-  public static void postRequest(String url, RequestParams params,
-                                 ResponseCallback callback, Class<?> clazz) {
-    CommonOkHttpClient.post(CommonRequest.createPostRequest(url, params),
+  public static void postRequest(String url, RequestParams params, String token,ResponseCallback callback, Class<?> clazz) {
+    CommonOkHttpClient.post(CommonRequest.createPostRequest(url,token, params),
         new ResposeDataHandle(callback, clazz));
+  }
+  /**
+   * POST请求 原来的
+   * @param url URL请求地址
+   * @param params 入参
+   * @param callback 回调接口
+   * @param clazz 需要解析的实体类
+   */
+  public static void postRequest1(String url, RequestParams params, String token,ResponseCallback callback, Class<?> clazz) {
+    CommonOkHttpClient.post(CommonRequest.createPostRequest1(url,token, params),
+            new ResposeDataHandle(callback, clazz));
   }
 
   /**
@@ -46,8 +56,8 @@ public class RequestMode {
   /**
    * 下载图片 Post方式
    */
-  public static void postLoadImg(String url, RequestParams params, String imgPath, ResponseByteCallback callback){
-    CommonOkHttpClient.downLadImg(CommonRequest.createPostRequest(url, params),imgPath,callback);
+  public static void postLoadImg( String token,String url, RequestParams params, String imgPath, ResponseByteCallback callback){
+    CommonOkHttpClient.downLadImg(CommonRequest.createPostRequest(url,token, params),imgPath,callback);
   }
 
   /**

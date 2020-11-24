@@ -1,17 +1,32 @@
 package com.example.newpost.base;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newpost.R;
 import com.example.newpost.dialog.LoadingDialog;
+import com.example.newpost.home_fragment.home_merchants.newmerchants.MerchantsDetailActivity11;
+import com.example.newpost.useractivity.LoginActivity;
+import com.example.newpost.utils.SPUtils;
 import com.gyf.barlibrary.ImmersionBar;
 
 import java.util.ArrayList;
@@ -32,6 +47,17 @@ public abstract class BaseActivity extends FragmentActivity implements ViewTreeO
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         statusBarConfig().init();
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            if (ContextCompat.checkSelfPermission(BaseActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                //没有权限则申请权限
+                ActivityCompat.requestPermissions(BaseActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            }else {
+
+
+            }
+        }else {
+
+        }
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
         }
@@ -65,18 +91,6 @@ public abstract class BaseActivity extends FragmentActivity implements ViewTreeO
     }
 
     /**
-     * 退出应用
-     * @param context
-     */
-    public void exitApp(Context context) {// 循环结束当前所有Activity
-        for (Activity ac : activitys) {
-            if (ac != null) {
-                ac.finish();
-            }
-        }
-    }
-
-    /**
      * 初始化沉浸式状态栏
      */
     private ImmersionBar statusBarConfig() {
@@ -100,4 +114,58 @@ public abstract class BaseActivity extends FragmentActivity implements ViewTreeO
     public void onGlobalLayout() {
 
     }
+
+    /**
+     * 退出应用
+     * @param context
+     */
+    public void exitApp(Context context) {// 循环结束当前所有Activity
+        for (Activity ac : activitys) {
+            if (ac != null) {
+                ac.finish();
+            }
+        }
+        startActivity(new Intent(mContext, LoginActivity.class));
+    }
+
+    /**
+     * 腾讯对象存储错误码
+     * @param msg
+     * @param title
+     */
+    public void popTip(String msg, String title) {
+        String msgShow = "错误码：" + msg;
+        TextView titleTextView = new TextView(this);
+        titleTextView.setText(title);
+        titleTextView.setPadding(10, 10, 10, 10);
+        titleTextView.setGravity(Gravity.CENTER);
+        titleTextView.setTextSize(20);
+        titleTextView.setTextColor(Color.rgb(0, 0, 0));
+
+        TextView contentView = new TextView(this);
+        contentView.setText(msgShow);
+        contentView.setPadding(10, 10, 10, 10);
+        contentView.setGravity(Gravity.CENTER);
+        contentView.setTextSize(15);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCustomTitle(titleTextView);
+        builder.setView(contentView);
+        builder.setCancelable(true);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void Failuer(int code,String msg){
+        if (code == 401) {
+            showToast("登录过期，请重新登录");
+            // 退出登录,清除本地数据
+            SPUtils.clear(mContext);
+            exitApp(mContext);
+        } else {
+            showToast(msg);
+        }
+    }
+
 }

@@ -1,15 +1,19 @@
 package com.example.newpost.net;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.Credentials;
 import okhttp3.FormBody;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
@@ -44,24 +48,56 @@ public class CommonRequest {
 
   /**
    * 创建Post请求的Request
-   *
+   * application/json
+   * bearer token
    * @return 返回一个创建好的Request对象
    */
-  public static Request createPostRequest(String url, RequestParams params) {
-    FormBody.Builder mFromBodyBuilder = new FormBody.Builder();
+  public static Request createPostRequest(String url,String bearer, RequestParams params) {
+    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    //将请求参数逐一遍历添加到我们的请求构建类中
+    Map<String, String> map = new HashMap<String, String>();
+    for (Map.Entry<String, String> entry : params.urlParams.entrySet()) {
+      map.put(entry.getKey(),entry.getValue());
+    }
+    JSONObject json2 =new JSONObject(map);
+    Log.e("llll----","....."+json2);
+    if (!TextUtils.isEmpty(bearer)){
+      bearer = "Bearer "+bearer;
+    }else {
+      bearer = "";
+    }
+    RequestBody body = RequestBody.create(JSON,json2+"");
+    Request request = new Request.Builder()
+        .addHeader("Authorization",bearer)
+        .url(url)
+        .post(body)
+        .build();
+    return request;
+  }
 
+  /**
+   * 创建Post请求的Request
+   * application/form-data
+   * @return 返回一个创建好的Request对象
+   */
+  public static Request createPostRequest1(String url, String bearer,RequestParams params) {
+    FormBody.Builder mFromBodyBuilder = new FormBody.Builder();
     //将请求参数逐一遍历添加到我们的请求构建类中
     for (Map.Entry<String, String> entry : params.urlParams.entrySet()) {
       mFromBodyBuilder.add(entry.getKey(), entry.getValue());
     }
-
+    if (!TextUtils.isEmpty(bearer)){
+      bearer = "Bearer "+bearer;
+    }else {
+      bearer = "";
+    }
     //通过请求构建类的build方法获取到真正的请求体对象
     FormBody mFormBody = mFromBodyBuilder.build();
     Request request = new Request.Builder()
-        .url(url)
-        .post(mFormBody)
-        .build();
-
+            .addHeader("Authorization",bearer)
+            .url(url)
+            .post(mFormBody)
+            .build();
     return request;
   }
 

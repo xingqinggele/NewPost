@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F3F3F3">
+
+
+    <RelativeLayout
+        android:background="@mipmap/message_title_img"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <LinearLayout
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="25dp"
+                    android:padding="5dp"
+                    android:src="@mipmap/back_left" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_toRightOf="@+id/iv_back"
+                    android:text="消息中心"
+                    android:textColor="@color/post_while"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+        <FrameLayout
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/my_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center_horizontal"
+                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorFullWidth="false"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/TabLayoutTextSize1"
+                app:tabTextColor="#FFFFFF"
+                app:tabGravity="fill"
+                app:tabIndicatorHeight="2dp"
+                app:tabMaxWidth="0.0dp"
+                app:tabMode="fixed"
+                app:tabBackground="@android:color/transparent"
+                app:tabRippleColor="@android:color/transparent"
+                />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/my_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+</LinearLayout>

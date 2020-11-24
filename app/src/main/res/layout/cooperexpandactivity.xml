@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/cooperexpand_bg"
+    android:fitsSystemWindows="true"
+ >
+
+
+    <RelativeLayout
+        android:id="@+id/cooperexpand_relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:padding="5dp"
+                android:src="@mipmap/back_left" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="21dp"
+            android:layout_toRightOf="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合作方拓展"
+            android:textColor="@color/post_while"
+            android:textSize="18sp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/cooperexpand_liner1"
+        android:layout_below="@+id/cooperexpand_relative"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cooperexpand_tab1"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@mipmap/cooperexpand_tab01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/cooperexpand_tab2"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@mipmap/cooperexpand_tab02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_above="@+id/cooperexpand_liner"
+        android:layout_below="@+id/cooperexpand_liner1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/earningsranking_line_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:background="@drawable/earningsranking_line_bg1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="设置项目"
+                android:textColor="#fffc9b1d"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/cooper_me_tv_hezuo"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="合作方"
+                android:textColor="#fffc9b1d"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我的"
+                android:textColor="#fffc9b1d"
+                android:textSize="18sp"
+                />
+
+
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:id="@+id/fr_liner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln1"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="借记卡成本"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln1"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv1"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv11"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv1"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln2"
+                        android:background="#FBF9F5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="借记卡封顶值"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln2"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv2"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv22"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv2"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln3"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="贷记卡成本"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln3"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv3"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv33"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv3"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+
+                        android:id="@+id/cooper_me_ln4"
+                        android:background="#FBF9F5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="扫码费率成本"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln4"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv4"
+
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv44"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv4"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="扫码D0成本"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln5"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv5"
+
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv55"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv5"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln6"
+                        android:background="#FBF9F5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="云闪付小额优惠成本"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln6"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv6"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv66"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv6"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln7"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="刷卡分润比例"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln7"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv7"
+
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv77"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv7"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln8"
+                        android:background="#FBF9F5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="扫码分润比例"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln8"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv8"
+
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv88"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv8"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_me_ln9"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="分润服务费"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_me_liner_ln9"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv9"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/cooper_me_liner_tv99"
+
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_me_tv9"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/fx_liner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/cooper_fx_ln1"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="传统POS返现"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/cooper_fx_liner_ln1"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv1"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv11"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv1"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="#FBF9F5"
+                        android:id="@+id/cooper_fx_ln2"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="20年传统POS押金版(299元)活动"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln2"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv2"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv22"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv2"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_fx_ln3"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="20年传统POS押金版(99元)活动"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln3"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv3"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv33"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv3"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="#FBF9F5"
+                        android:id="@+id/cooper_fx_ln4"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="电签押金版首次 激活返现"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln4"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv4"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv44"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv4"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_fx_ln5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="电签押金版非首次激活返现"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln5"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv5"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv55"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv5"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="#FBF9F5"
+                        android:id="@+id/cooper_fx_ln6"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="电签非押金版返现"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln6"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv6"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv66"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv6"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cooper_fx_ln7"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="返现比例"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln7"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv7"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv77"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv7"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="#FBF9F5"
+                        android:id="@+id/cooper_fx_ln8"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="返现服务费"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+                        <LinearLayout
+                            android:visibility="gone"
+
+                            android:id="@+id/cooper_fx_liner_ln8"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:id="@+id/cooper_fx_liner_tv8"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#FF5075"
+                                android:textSize="15sp"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/cooper_fx_liner_tv88"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#787878"
+                                android:textSize="10sp"
+                                />
+
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/cooper_fx_tv8"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#787878"
+                            android:textSize="15sp"
+                            />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/cooperexpand_liner"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/cooperexpand_btn1"
+            android:layout_gravity="center"
+            android:src="@mipmap/cooperexpand_btn01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/cooperexpand_btn2"
+            android:layout_gravity="center"
+            android:layout_marginLeft="54dp"
+            android:src="@mipmap/cooperexpand_btn02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>

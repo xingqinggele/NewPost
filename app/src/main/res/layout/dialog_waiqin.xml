@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_frame_solid_1">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="借记卡成本"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/dialog_tv1"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/dialog_title"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        android:text="设置范围 不能大于我的分润"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/dialog_ed_content"
+        android:background="@null"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_tv1"
+        app:layout_constraintLeft_toLeftOf="@+id/dialog_tv1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"/>
+    <View
+        android:background="#0053CB"
+        app:layout_constraintRight_toRightOf="@+id/dialog_ed_content"
+        app:layout_constraintLeft_toLeftOf="@+id/dialog_ed_content"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_ed_content"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/dialog_ed_content"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_ed_content"
+        android:text="不能大于我的分润"
+        android:id="@+id/dialog_tishi"
+        android:textSize="14sp"
+        android:textColor="@color/txy_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#0053CB"
+        android:id="@+id/dialog_determine"
+        android:layout_marginTop="50dp"
+        app:layout_constraintRight_toRightOf="@+id/dialog_ed_content"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_ed_content"
+        android:text="确定"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="#0053CB"
+        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_determine"
+        app:layout_constraintTop_toTopOf="@+id/dialog_determine"
+        app:layout_constraintRight_toLeftOf="@+id/dialog_determine"
+        android:id="@+id/dialog_cancel"
+        android:text="取消"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</android.support.constraint.ConstraintLayout>

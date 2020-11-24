@@ -48,6 +48,7 @@ public class CommonOkHttpClient {
     //创建我们Client对象的构建者
     OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
     okHttpBuilder
+
         //为构建者设置超时时间
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -60,6 +61,7 @@ public class CommonOkHttpClient {
         .followRedirects(true)
         //设置拦截器
         .addInterceptor(new RequetInterceptor())
+
 //        //添加https支持
 //        .hostnameVerifier(new HostnameVerifier() {
 //          @Override

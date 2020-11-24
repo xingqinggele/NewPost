@@ -11,4 +11,18 @@
     <color name="color_xian">#ccccd5</color>
     <color name="home_merchant">#165e8e</color>
     <color name="main_fragment2">#2d5d8a</color>
+    <color name="merchants_big_details2">#F3F3F3</color>
+    <color name="earnings_ranking_tab">#2e81d6</color>
+    <color name="register_activity_check_no">#62b2d8</color>
+    <color name="register_activity_check_yes"> #1673a3</color>
+<!--    白色-->
+    <color name="post_while">#FFFFFF</color>
+<!--    我的银行卡界面-->
+    <color name="me_bank_card_tv1">#212121</color>
+    <color name="me_bank_card_tv2">#858585</color>
+    <color name="me_bank_card_tv3">#272727</color>
+    <color name="me_bank_card_view">#E5E5E5</color>
+    <color name="pale_green">#98F898</color>
+
+
 </resources>
