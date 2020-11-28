@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
@@ -35,10 +35,11 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-<!--        android:name=".CeshiActivity"-->
-        <activity
-                android:name=".MainActivity"
 
+        <!--        android:name=".MainActivity"-->
+
+        <activity
+            android:name=".MainActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:launchMode="singleTask">
             <intent-filter>
@@ -51,19 +52,7 @@
         <activity android:name=".home_fragment.home_merchants.MerchantsActivity" />
         <!--        新增选择页商户-->
         <activity android:name=".home_fragment.home_merchants.newmerchants.NewMerchantsActivity" />
-        <!--        新增小微商户1-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity1" />
 
-        <!--        新增小微商户2-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity2" />
-        <!--        新增企业商户1-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity1" />
-        <!--        新增企业商户2-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity2" />
-<!--        <activity android:name=".MainActivity" />-->
-
-        <!--        新增企业商户3-->
-                <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity3" />
         <!--        我的-&#45;&#45;修改密码-->
         <activity android:name=".me_fragment.MeChangePassWordActivity" />
         <!--        我的  个人信息-->
@@ -101,10 +90,23 @@
         <!--        余额体现-->
         <activity android:name=".me_fragment.MeBalanceWitndActivity" />
         <!-- 提交成功界面-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailSubActivity" />
-<!--        测试-->
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity11"/>
-        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity22"/>
+        <activity android:name=".home_fragment.home_merchants.newmerchants.state.MerchantsDetailSubActivity" />
+        <!--        新增小微商户1-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity11" />
+        <!--        新增小微商户2-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsDetailActivity22" />
+        <!--        新增企业商户1-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity11" />
+        <!--        新增企业商户2-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity22" />
+        <!--        新增企业商户3-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity33" />
+        <!--        终端划拨选择下级-->
+        <activity android:name=".home_fragment.home_merchants.merchantstransfer.MerchantsTransferPersonActivity" />
+        <!--        终端划拨-->
+        <activity android:name=".home_fragment.home_merchants.merchantstransfer.MerchantsTransferActivity" />
+        <!-- 提交驳回界面-->
+        <activity android:name=".home_fragment.home_merchants.newmerchants.state.MerchantsDetailFailureActivity" />
     </application>
 
 </manifest>

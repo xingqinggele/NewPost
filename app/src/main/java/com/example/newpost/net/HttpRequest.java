@@ -1,5 +1,9 @@
 package com.example.newpost.net;
 
+import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+
+import java.util.List;
+
 /**
  * 作者：zb.
  * <p>
@@ -102,6 +106,60 @@ public class HttpRequest {
      */
     public static void getProfit(RequestParams params,String token, ResponseCallback callback) {
         RequestMode.postRequest1(Urls.commUrls+"pos/api/getProfit", params, token,callback, null);
+    }
+
+/**
+     * 修改分润表
+     * @param params
+     * @param callback
+     */
+    public static void getAddProfitSet(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest(Urls.commUrls+"pos/api/addProfitSet", params, token,callback, null);
+    }
+
+/**
+     * 获取分享吗
+     * @param params
+     * @param callback
+     */
+    public static void getUserShare(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest1(Urls.commUrls+"pos/api/getUserShare", params, token,callback, null);
+    }
+
+
+/**
+     * 终端管理总页面
+     * @param params
+     * @param callback
+     */
+    public static void getUserPos(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest1(Urls.commUrls+"pos/pos/getUserPos", params, token,callback, null);
+    }
+
+/**
+     * 获取下级终端用户列表
+     * @param params
+     * @param callback
+     */
+    public static void getPosUserList(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest1(Urls.commUrls+"pos/pos/getPosUserList", params, token,callback, null);
+    }
+    /**
+     * 终端划拨
+     * @param params
+     * @param callback
+     */
+    public static void updPosListTo(RequestParams params, String token, List<MermachineBean> mermachineBeans ,ResponseCallback callback) {
+        RequestMode.postRequest2(Urls.commUrls+"pos/pos/updPosListTo", params, token,mermachineBeans,callback, null);
+    }
+
+     /**
+     * 终端划列表
+     * @param params
+     * @param callback
+     */
+    public static void getPosList(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest1(Urls.commUrls+"pos/pos/getPosList", params, token,callback, null);
     }
 
 

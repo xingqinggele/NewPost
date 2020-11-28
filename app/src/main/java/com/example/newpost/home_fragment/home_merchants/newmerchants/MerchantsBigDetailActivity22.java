@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ import com.example.newpost.utils.GetJsonDataUtil;
 import com.example.newpost.utils.ImageConvertUtil;
 import com.example.newpost.utils.SPUtils;
 import com.example.newpost.utils.TimeUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +60,8 @@ import com.tencent.cos.xml.transfer.TransferManager;
 import com.tencent.cos.xml.transfer.TransferState;
 import com.tencent.cos.xml.transfer.TransferStateListener;
 import com.tencent.ocr.sdk.common.ISDKKitResultListener;
+import com.tencent.ocr.sdk.common.OcrModeType;
+import com.tencent.ocr.sdk.common.OcrSDKConfig;
 import com.tencent.ocr.sdk.common.OcrSDKKit;
 import com.tencent.ocr.sdk.common.OcrType;
 
@@ -75,9 +79,49 @@ import java.util.List;
  * 创建日期：2020/11/2
  * 描述:新增企业商户2
  */
-public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
-    private static final int MSG_SHOU_QUAN_SHU = 0x0001; //授权书
+public class MerchantsBigDetailActivity22 extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+    private String MerchantsBig_IDCard_IS_TYPE = ""; //身份证类型
+    private String MerchantsBig_IDCard_NO_TYPE = ""; //身份证类型
+    private String MerchantsBig_Bank = ""; //银行卡照片
+    private String MerchantsBig_Bank_TYPE = "1"; //银行卡类型
+    private String MerchantsBig_Shouquan = ""; //授权书照片
+    private String MerchantsBig_Shouquan_TYPE = "1"; //授权书类型
+    private String MerchantsBig_License = ""; // 营业执照照片
+    private String MerchantsBig_LicenseType = "1"; // 营业执照类型
+    private String MerchantsBig_handheld_License = ""; // 手持营业执照照片
+    private String MerchantsBig_handheld_LicenseType = "1"; // 手持营业执照类型
+    private String MerchantsBig_IMG1 = "";
+    private String MerchantsBig_IMG1_TYPE = "1";
+    private String MerchantsBig_IMG2 = "";
+    private String MerchantsBig_IMG2_TYPE = "1";
+    private String MerchantsBig_IMG3 = "";
+    private String MerchantsBig_IMG3_TYPE = "1";
+    private String MerchantsBig_IMG4 = "";
+    private String MerchantsBig_IMG4_TYPE = "1";
+    private String mctPermitType = "";//营业执照类型
+    private String mctPermitNum = "";//营业执照编号
+    private String mctPermitAging = "";//营业执照有效期
+    private String mctPhoneLo = "";//营业执照手机号
+    private String MCT_ID = ""; //详情ID
+    private String UserType = "0"; // 新增，修改状态
 
+
+    private String CodeTypes = "0";   // 对公，对私
+    private boolean PersonType = true;   // 是,否法人
+    private String PersonTypes = "0";   // 是,否法人
+    private String Big1_shopName = "";
+    private String Big1_shopScope = "";
+    private String Big1_shopAddress = "";
+    private String Big1_shopDetailAddress = "";
+    private String Big1_shopIdis = "";
+    private String Big1_shopIdno = "";
+    private String Big1_shopUserName = "";
+    private String Big1_shopUserNumber = "";
+    private String Big1_shopYear = "";
+    private String mctBankType = "1"; // 开户行ID
+
+
+    private static final int MSG_SHOU_QUAN_SHU = 0x0001; //授权书
     //省市区选择
     private static final int MSG_LOAD_DATA = 0x0001;
     private static final int MSG_LOAD_SUCCESS = 0x0002;
@@ -89,45 +133,20 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
 
-    private boolean CodeType = true;   // 对公，对私
-    private String CodeTypes = "0";   // 对公，对私
-    private boolean PersonType = true;   // 是,否法人
-    private String PersonTypes = "0";   // 是,否法人
+
     private RadioGroup merchant_big_detail2_radio_group2;
     private RadioGroup merchant_big_detail2_radio_group1;
+
     private RelativeLayout merchant_big_detail2_type;
     private LinearLayout merchant_big_detail2_line3;
     private LinearLayout iv_back;
     private TextView merchant_big_detail2_region;
     private Button merchant_big_detail2_submit;
-    private String Big1_shopName = "";
-    private String Big1_shopScope = "";
-    private String Big1_shopAddress = "";
-    private String Big1_shopDetailAddress = "";
-    private String Big1_shopIdis = "";
-    private String Big1_shopIdno = "";
-    private String Big1_shopUserName = "";
-    private String Big1_shopUserNumber = "";
-    private String Big1_shopYear = "";
 
-    private String secretId;  // 腾讯秘钥ID
-    private String secretKey; // 腾讯秘钥key
-    //对象存储，图片上传到腾讯云
-    private String folderName = "";
-    private String bucketName = "cykj-1303987307";
-    private CosXmlService cosXmlService;
-    private TransferManager transferManager;
-    private COSXMLUploadTask cosxmlTask;
-    private String url1;
-    private String url2;
-    private String Big_bank_url = "";
-    private String Big_bank_shouquan = "";
+    private SimpleDraweeView merchant_big_detail2_bank_card; // 身份证照片
+    private SimpleDraweeView merchant_big_detail2_author; //授权书
 
-    private ImageView merchant_big_detail2_bank_card; // 身份证照片
-    private ImageView merchant_big_detail2_author; //授权书
-    private Bitmap bitmap1;// 银行卡
-    private Bitmap bitmap2;// 授权书
-    private boolean isOrc = false;  //腾讯云识别银行卡是否允许
+    private boolean isOrc = true;  //腾讯云识别银行卡是否允许
     //已经选择图片
     private List<LocalMedia> selectList = new ArrayList<>();
     //照片选择最大值
@@ -136,13 +155,16 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     private EditText merchant_big_detail2_account;
     private EditText merchant_big_detail2_kh_name;
     private EditText merchant_big_detail2_kh_phone;
-    //银行范围
     //营业范围数据配置
     private List<Merchants2DetailBean> mdBean = new ArrayList<>();
     // 选择控件
     private OptionsPickerView reasonPicker;
-    private String mctBankType = "";
 
+
+    private RadioButton merchants_big_detail2_radio_male, merchants_big_detail2_radio_private, merchants_big_detail2_radio_yes, merchants_big_detail2_radio_no;
+
+    private String secretId;  // 腾讯秘钥ID
+    private String secretKey; // 腾讯秘钥key
     @Override
     protected int getLayoutId() {
         return R.layout.merchants_big_detailactivity2;
@@ -184,12 +206,8 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
      */
     @Override
     protected void initView() {
-        secretId = SPUtils.get(MerchantsBigDetailActivity2.this, "secretId", "-1").toString();
-        secretKey = SPUtils.get(MerchantsBigDetailActivity2.this, "secretKey", "-1").toString();
-        cosXmlService = CosServiceFactory.getCosXmlService(this, "ap-beijing", secretId, secretKey, true);
-        TransferConfig transferConfig = new TransferConfig.Builder().build();
-        transferManager = new TransferManager(cosXmlService, transferConfig);
-
+        secretId = SPUtils.get(MerchantsBigDetailActivity22.this, "secretId", "-1").toString();
+        secretKey = SPUtils.get(MerchantsBigDetailActivity22.this, "secretKey", "-1").toString();
         merchant_big_detail2_radio_group1 = findViewById(R.id.merchant_big_detail2_radio_group1);
         merchant_big_detail2_kh_name = findViewById(R.id.merchant_big_detail2_kh_name);
         merchant_big_detail2_radio_group2 = findViewById(R.id.merchant_big_detail2_radio_group2);
@@ -211,6 +229,11 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
         merchant_big_detail2_bank_card.setOnClickListener(this);
         merchant_big_detail2_region.setOnClickListener(this);
         merchant_big_detail2_author.setOnClickListener(this);
+        merchants_big_detail2_radio_male = findViewById(R.id.merchants_big_detail2_radio_male);
+        merchants_big_detail2_radio_private = findViewById(R.id.merchants_big_detail2_radio_private);
+        merchants_big_detail2_radio_yes = findViewById(R.id.merchants_big_detail2_radio_yes);
+        merchants_big_detail2_radio_no = findViewById(R.id.merchants_big_detail2_radio_no);
+
     }
 
     /**
@@ -219,6 +242,7 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     @Override
     protected void initData() {
         mHandler.sendEmptyMessage(MSG_LOAD_DATA);
+
         Big1_shopName = getIntent().getStringExtra("big_shopName");
         Big1_shopScope = getIntent().getStringExtra("big_shopScope");
         Big1_shopAddress = getIntent().getStringExtra("big_shopAddress");
@@ -228,6 +252,55 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
         Big1_shopUserName = getIntent().getStringExtra("big_shopUserName");
         Big1_shopUserNumber = getIntent().getStringExtra("big_shopUserNumber");
         Big1_shopYear = getIntent().getStringExtra("big_shopYear");
+        MerchantsBig_IDCard_IS_TYPE = getIntent().getStringExtra("big_shopIdno_type");
+        MerchantsBig_IDCard_NO_TYPE = getIntent().getStringExtra("big_shopIdno_type");
+        UserType = getIntent().getStringExtra("userType");
+        if (UserType.equals("1")) {
+            MCT_ID = getIntent().getStringExtra("MCT_ID");
+            MerchantsBig_Bank = getIntent().getStringExtra("MerchantsBig_Bank");
+            MerchantsBig_Bank_TYPE = getIntent().getStringExtra("MerchantsBig_Bank_TYPE");
+            MerchantsBig_Shouquan = getIntent().getStringExtra("MerchantsBig_Shouquan");
+            MerchantsBig_Shouquan_TYPE = getIntent().getStringExtra("MerchantsBig_Shouquan_TYPE");
+            MerchantsBig_License = getIntent().getStringExtra("MerchantsBig_License");
+            MerchantsBig_LicenseType = getIntent().getStringExtra("MerchantsBig_LicenseType");
+            MerchantsBig_handheld_License = getIntent().getStringExtra("MerchantsBig_handheld_License");
+            MerchantsBig_handheld_LicenseType = getIntent().getStringExtra("MerchantsBig_handheld_LicenseType");
+            MerchantsBig_IMG1 = getIntent().getStringExtra("MerchantsBig_IMG1");
+            MerchantsBig_IMG1_TYPE = getIntent().getStringExtra("MerchantsBig_IMG1_TYPE");
+            MerchantsBig_IMG2 = getIntent().getStringExtra("MerchantsBig_IMG2");
+            MerchantsBig_IMG2_TYPE = getIntent().getStringExtra("MerchantsBig_IMG2_TYPE");
+            MerchantsBig_IMG3 = getIntent().getStringExtra("MerchantsBig_IMG3");
+            MerchantsBig_IMG3_TYPE = getIntent().getStringExtra("MerchantsBig_IMG3_TYPE");
+            MerchantsBig_IMG4 = getIntent().getStringExtra("MerchantsBig_IMG4");
+            MerchantsBig_IMG4_TYPE = getIntent().getStringExtra("MerchantsBig_IMG4_TYPE");
+            CodeTypes = getIntent().getStringExtra("mctSettleType");
+            PersonTypes = getIntent().getStringExtra("mctSettleLegal");
+            if (CodeTypes.equals("0")) {
+                merchants_big_detail2_radio_male.setChecked(true);
+            } else {
+                merchants_big_detail2_radio_private.setChecked(true);
+            }
+            if (PersonTypes.equals("0")) {
+                merchants_big_detail2_radio_yes.setChecked(true);
+            } else {
+                merchants_big_detail2_radio_no.setChecked(true);
+            }
+            merchant_big_detail2_region.setText(getIntent().getStringExtra("mctBankRegion"));
+            merchant_big_detail2_account.setText(getIntent().getStringExtra("mctBankNum"));
+            merchant_big_detail2_bank.setText(getIntent().getStringExtra("mctBankType"));
+            merchant_big_detail2_kh_name.setText(getIntent().getStringExtra("mctBankUser"));
+            merchant_big_detail2_kh_phone.setText(getIntent().getStringExtra("mctBankPhone"));
+            mctBankType = getIntent().getStringExtra("mctBankType_ID");
+            merchant_big_detail2_bank_card.setImageURI(MerchantsBig_Bank);
+            merchant_big_detail2_author.setImageURI(MerchantsBig_Shouquan);
+
+
+            mctPermitType = getIntent().getStringExtra("mctPermitType");
+            mctPermitNum = getIntent().getStringExtra("mctPermitNum");
+            mctPermitAging = getIntent().getStringExtra("mctPermitAging");
+            mctPhoneLo = getIntent().getStringExtra("mctPhoneLo");
+        }
+
         getBankAndPlace();
     }
 
@@ -241,12 +314,10 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (i) {
             case R.id.merchants_big_detail2_radio_male:
-                CodeType = true;
                 CodeTypes = "0";
                 merchant_big_detail2_type.setVisibility(View.VISIBLE);
                 break;
             case R.id.merchants_big_detail2_radio_private:
-                CodeType = false;
                 CodeTypes = "1";
                 merchant_big_detail2_type.setVisibility(View.GONE);
                 break;
@@ -276,8 +347,9 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                 break;
 
             case R.id.merchant_big_detail2_bank_card:
+                initSdk(secretId, secretKey);
                 if (isOrc) {
-                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity2.this, OcrType.BankCardOCR,
+                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity22.this, OcrType.BankCardOCR,
                             CustomConfigUtil.getInstance().getCustomConfigUi(), new ISDKKitResultListener() {
                                 @Override
                                 public void onProcessSucceed(String response, String srcBase64Image, String requestId) {
@@ -298,12 +370,12 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                 }
                 break;
             case R.id.merchant_big_detail2_submit:
-                if (bitmap1 == null) {
+                if (TextUtils.isEmpty(MerchantsBig_Bank)) {
                     showToast("请上传银行卡照片");
                     return;
                 }
                 if (!PersonType) {
-                    if (bitmap2 == null) {
+                    if (TextUtils.isEmpty(MerchantsBig_Shouquan)) {
                         showToast("请上传授权书");
                         return;
                     }
@@ -324,18 +396,9 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                 if (TextUtils.isEmpty(merchant_big_detail2_kh_phone.getText().toString().trim())) {
                     showToast("请输入预留手机号");
                 }
-                loadDialog.show();
-                try {
-                    url1 = ImageConvertUtil.getFile(bitmap1).getCanonicalPath();
-                    if (bitmap2 != null) {
-                        url2 = ImageConvertUtil.getFile(bitmap2).getCanonicalPath();
-                    }
-//                    folderName = TimeUtils.getNowTime() + "/" + Big1_shopUserNumber;
-                    folderName = TimeUtils.getNowTime() + "/" + "463001198502255128";
-                    upload(folderName, url1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                getIntents(PersonType);
+
 
                 break;
             case R.id.merchant_big_detail2_bank:
@@ -346,7 +409,7 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                 if (isLoaded) {
                     showPickerView();
                 } else {
-                    Toast.makeText(MerchantsBigDetailActivity2.this, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchantsBigDetailActivity22.this, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.merchant_big_detail2_author:
@@ -357,6 +420,19 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     }
 
 
+    /**
+     * 腾讯卡片识别初始化
+     */
+    private void initSdk(String secretId, String secretKey) {
+        // 启动参数配置
+        OcrType ocrType = OcrType.BankCardOCR; // 设置默认的业务识别，银行卡
+        OcrSDKConfig configBuilder = OcrSDKConfig.newBuilder(secretId, secretKey, null)
+                .OcrType(ocrType)
+                .ModeType(OcrModeType.OCR_DETECT_MANUAL)
+                .build();
+        // 初始化SDK
+        OcrSDKKit.getInstance().initWithConfig(this.getApplicationContext(), configBuilder);
+    }
     /**
      * 选取照片初始化
      */
@@ -389,16 +465,32 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
      */
     public void getdata(String response, String srcBase64Image) {
         if (!srcBase64Image.isEmpty()) {
-            bitmap1 = ImageConvertUtil.base64ToBitmap(srcBase64Image);
+            Bitmap bitmap = ImageConvertUtil.base64ToBitmap(srcBase64Image);
+            try {
+                if (bitmap != null)
+                    merchant_big_detail2_bank_card.setImageBitmap(bitmap);
+                MerchantsBig_Bank = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                MerchantsBig_Bank_TYPE = "2";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        if (bitmap1 != null) {
-            merchant_big_detail2_bank_card.setImageBitmap(bitmap1);
-        }
+
         if (!response.isEmpty()) {
             final BankCardInfo bankCardInfo = new Gson().fromJson(response, BankCardInfo.class);
-            Log.e("银行卡", bankCardInfo.getCardNo() + "----" + bankCardInfo.getBankInfo());
+            Log.e("银行卡", bankCardInfo.getCardNo() +mdBean.size()+ "----" + bankCardInfo.getBankInfo());
+            for (int i = 0;i < mdBean.size();i++){
+                if (mdBean.get(i).getBankName().equals(bankCardInfo.getBankInfo().substring(0,bankCardInfo.getBankInfo().length()-10))){
+                    mctBankType = mdBean.get(i).getBankId();
+                    Log.e("银行ID",mdBean.get(i).getBankId());
+                }
+                else {
+                    Log.e("不一样",mdBean.get(i).getBankId());
+                }
+            }
+
             merchant_big_detail2_account.setText(bankCardInfo.getCardNo());
-            merchant_big_detail2_bank.setText(bankCardInfo.getBankInfo());
+            merchant_big_detail2_bank.setText(bankCardInfo.getBankInfo().substring(0,bankCardInfo.getBankInfo().length()-10));
         } else {
             //Toast.makeText(this, "result is empty", Toast.LENGTH_SHORT).show();
         }
@@ -433,7 +525,8 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                         Bitmap bitmap = BitmapFactory.decodeFile(selectList.get(0).getCompressPath());
                         if (bitmap != null) {
                             merchant_big_detail2_bank_card.setImageBitmap(bitmap);
-                            bitmap1 = bitmap;
+                            MerchantsBig_Bank = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                            MerchantsBig_Bank_TYPE = "2";
                         } else {
                             merchant_big_detail2_bank_card.setImageResource(R.mipmap.merchant_detail_bank_car);
                         }
@@ -458,7 +551,9 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                         Bitmap bitmap = BitmapFactory.decodeFile(selectList.get(0).getCompressPath());
                         if (bitmap != null) {
                             merchant_big_detail2_author.setImageBitmap(bitmap);
-                            bitmap2 = bitmap;
+                            MerchantsBig_Shouquan = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                            MerchantsBig_Shouquan_TYPE = "2";
+
                         } else {
                             merchant_big_detail2_author.setImageResource(R.mipmap.merchant_big_details2_author);
                         }
@@ -491,7 +586,7 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
      */
     public void getBankAndPlace() {
         RequestParams params = new RequestParams();
-        HttpRequest.getBankAndPlace(params, SPUtils.get(MerchantsBigDetailActivity2.this, "Token", "-1").toString(), new ResponseCallback() {
+        HttpRequest.getBankAndPlace(params, SPUtils.get(MerchantsBigDetailActivity22.this, "Token", "-1").toString(), new ResponseCallback() {
             @Override
             public void onSuccess(Object responseObj) {
                 //需要转化为实体对象
@@ -513,7 +608,7 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
                     showToast("登录过期，请重新登录");
                     // 退出登录,清除本地数据
                     SPUtils.clear(mContext);
-                    exitApp(MerchantsBigDetailActivity2.this);
+                    exitApp(MerchantsBigDetailActivity22.this);
                 } else {
                     showToast(failuer.getEmsg());
                 }
@@ -530,149 +625,52 @@ public class MerchantsBigDetailActivity2 extends BaseActivity implements RadioGr
     }
 
 
-    /**
-     * 上传图片,对象存储
-     */
-    private void upload(String newfolderName, String url) {
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        if (cosxmlTask == null) {
-            File file = new File(url);
-            String cosPath;
-            if (TextUtils.isEmpty(newfolderName)) {
-                cosPath = file.getName();
-            } else {
-                cosPath = newfolderName + File.separator + file.getName();
-            }
-            cosxmlTask = transferManager.upload(bucketName, cosPath, url, null);
-            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + url);
-
-            cosxmlTask.setTransferStateListener(new TransferStateListener() {
-                @Override
-                public void onStateChanged(final TransferState state) {
-                    // refreshUploadState(state);
-                }
-            });
-            cosxmlTask.setCosXmlProgressListener(new CosXmlProgressListener() {
-                @Override
-                public void onProgress(final long complete, final long target) {
-                    // refreshUploadProgress(complete, target);
-                }
-            });
-
-            cosxmlTask.setCosXmlResultListener(new CosXmlResultListener() {
-                @Override
-                public void onSuccess(CosXmlRequest request, CosXmlResult result) {
-                    COSXMLUploadTask.COSXMLUploadTaskResult cOSXMLUploadTaskResult = (COSXMLUploadTask.COSXMLUploadTaskResult) result;
-                    cosxmlTask = null;
-                    //  setResult(RESULT_OK);
-                    Log.e("1111", "成功");
-                    Big_bank_url = result.accessUrl;
-                    if (!TextUtils.isEmpty(url2)) {
-                        upload1(folderName, url2);
-                    }else {
-                        loadDialog.dismiss();
-                        getIntents(true);
-                    }
-                }
-
-                @Override
-                public void onFail(CosXmlRequest request, CosXmlClientException exception, CosXmlServiceException serviceException) {
-                    if (cosxmlTask.getTaskState() != TransferState.PAUSED) {
-                        loadDialog.dismiss();
-                        cosxmlTask = null;
-                        Log.e("1111", "上传失败");
-                    }
-                    exception.printStackTrace();
-                    serviceException.printStackTrace();
-                }
-            });
-
-        }
-    }
-
-    private void upload1(String newfolderName, String url) {
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        if (cosxmlTask == null) {
-            File file = new File(url);
-            String cosPath;
-            if (TextUtils.isEmpty(newfolderName)) {
-                cosPath = file.getName();
-            } else {
-                cosPath = newfolderName + File.separator + file.getName();
-            }
-            cosxmlTask = transferManager.upload(bucketName, cosPath, url, null);
-            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + url);
-
-            cosxmlTask.setTransferStateListener(new TransferStateListener() {
-                @Override
-                public void onStateChanged(final TransferState state) {
-                    // refreshUploadState(state);
-                }
-            });
-            cosxmlTask.setCosXmlProgressListener(new CosXmlProgressListener() {
-                @Override
-                public void onProgress(final long complete, final long target) {
-                    // refreshUploadProgress(complete, target);
-                }
-            });
-
-            cosxmlTask.setCosXmlResultListener(new CosXmlResultListener() {
-                @Override
-                public void onSuccess(CosXmlRequest request, CosXmlResult result) {
-                    COSXMLUploadTask.COSXMLUploadTaskResult cOSXMLUploadTaskResult = (COSXMLUploadTask.COSXMLUploadTaskResult) result;
-                    cosxmlTask = null;
-                    loadDialog.dismiss();
-                    // setResult(RESULT_OK);
-                    Log.e("2222", "长传成功");
-                    Big_bank_shouquan = result.accessUrl;
-                    getIntents(false);
-                }
-
-                @Override
-                public void onFail(CosXmlRequest request, CosXmlClientException exception, CosXmlServiceException serviceException) {
-                    if (cosxmlTask.getTaskState() != TransferState.PAUSED) {
-                        cosxmlTask = null;
-                        loadDialog.dismiss();
-                        Log.e("2222", "上传失败");
-
-                    }
-                    exception.printStackTrace();
-                    serviceException.printStackTrace();
-                }
-            });
-
-        }
-    }
-
     //跳转公共方法
-    public void getIntents(boolean type){
-        Intent intent = new Intent(MerchantsBigDetailActivity2.this,MerchantsBigDetailActivity3.class);
-        intent.putExtra("Big1_shopName",Big1_shopName);
-        intent.putExtra("Big1_shopScope",Big1_shopScope);
-        intent.putExtra("Big1_shopAddress",Big1_shopAddress);
-        intent.putExtra("Big1_shopDetailAddress",Big1_shopDetailAddress);
-        intent.putExtra("Big1_shopIdis",Big1_shopIdis);
-        intent.putExtra("Big1_shopIdno",Big1_shopIdno);
-        intent.putExtra("Big1_shopUserName",Big1_shopUserName);
-        intent.putExtra("Big1_shopUserNumber",Big1_shopUserNumber);
-        intent.putExtra("Big1_shopYear",Big1_shopYear);
-        intent.putExtra("Big1_bank_address",merchant_big_detail2_region.getText().toString().trim());
-        intent.putExtra("Big1_bank_Type",mctBankType);
-        intent.putExtra("Big1_bank_number",merchant_big_detail2_account.getText().toString().trim());
-        intent.putExtra("Big1_bank_name",merchant_big_detail2_kh_name.getText().toString().trim());
-        intent.putExtra("Big1_bank_phone",merchant_big_detail2_kh_phone.getText().toString().trim());
-        intent.putExtra("Big1_bank_car",Big_bank_url);
-        intent.putExtra("CodeTypes",CodeTypes);
-        intent.putExtra("PersonTypes",PersonTypes);
-        if (!type){
-            intent.putExtra("Big1_bank_shouquan",Big_bank_shouquan);
+    public void getIntents(boolean type) {
+        Intent intent = new Intent(MerchantsBigDetailActivity22.this, MerchantsBigDetailActivity33.class);
+        intent.putExtra("UserType", UserType);
+        intent.putExtra("Big1_shopName", Big1_shopName);
+        intent.putExtra("Big1_shopScope", Big1_shopScope);
+        intent.putExtra("Big1_shopAddress", Big1_shopAddress);
+        intent.putExtra("Big1_shopDetailAddress", Big1_shopDetailAddress);
+        intent.putExtra("Big1_shopIdis", Big1_shopIdis);
+        intent.putExtra("Big1_shopIdis_type", MerchantsBig_IDCard_IS_TYPE);
+        intent.putExtra("Big1_shopIdno", Big1_shopIdno);
+        intent.putExtra("Big1_shopIdno_type", MerchantsBig_IDCard_NO_TYPE);
+        intent.putExtra("Big1_shopUserName", Big1_shopUserName);
+        intent.putExtra("Big1_shopUserNumber", Big1_shopUserNumber);
+        intent.putExtra("Big1_shopYear", Big1_shopYear);
+        intent.putExtra("Big1_bank_address", merchant_big_detail2_region.getText().toString().trim());
+        intent.putExtra("Big1_bank_Type", mctBankType);
+        intent.putExtra("Big1_bank_number", merchant_big_detail2_account.getText().toString().trim());
+        intent.putExtra("Big1_bank_name", merchant_big_detail2_kh_name.getText().toString().trim());
+        intent.putExtra("Big1_bank_phone", merchant_big_detail2_kh_phone.getText().toString().trim());
+        intent.putExtra("Big1_bank_car", MerchantsBig_Bank);
+        intent.putExtra("Big1_bank_car_type", MerchantsBig_Bank_TYPE);
+        intent.putExtra("CodeTypes", CodeTypes);
+        intent.putExtra("PersonTypes", PersonTypes);
+        intent.putExtra("MCT_ID", MCT_ID);
+        if (!type) {
+            intent.putExtra("Big1_bank_shouquan", MerchantsBig_Shouquan);
+            intent.putExtra("Big1_bank_shouquan_type", MerchantsBig_Shouquan_TYPE);
         }
+        intent.putExtra("mctPermitType", mctPermitType);
+        intent.putExtra("mctPermitNum", mctPermitNum);
+        intent.putExtra("mctPermitAging", mctPermitAging);
+        intent.putExtra("mctPhoneLo", mctPhoneLo);
+        intent.putExtra("MerchantsBig_License", MerchantsBig_License);
+        intent.putExtra("MerchantsBig_LicenseType", MerchantsBig_LicenseType);
+        intent.putExtra("MerchantsBig_handheld_License", MerchantsBig_handheld_License);
+        intent.putExtra("MerchantsBig_handheld_LicenseType", MerchantsBig_handheld_LicenseType);
+        intent.putExtra("MerchantsBig_IMG1", MerchantsBig_IMG1);
+        intent.putExtra("MerchantsBig_IMG1_TYPE", MerchantsBig_IMG1_TYPE);
+        intent.putExtra("MerchantsBig_IMG2", MerchantsBig_IMG2);
+        intent.putExtra("MerchantsBig_IMG2_TYPE", MerchantsBig_IMG2_TYPE);
+        intent.putExtra("MerchantsBig_IMG3", MerchantsBig_IMG3);
+        intent.putExtra("MerchantsBig_IMG3_TYPE", MerchantsBig_IMG3_TYPE);
+        intent.putExtra("MerchantsBig_IMG4", MerchantsBig_IMG4);
+        intent.putExtra("MerchantsBig_IMG4_TYPE", MerchantsBig_IMG4_TYPE);
+
         startActivity(intent);
     }
 

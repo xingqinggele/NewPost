@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="#F3F3F3">
 
     <RelativeLayout
@@ -395,12 +396,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        fresco:placeholderImage="@mipmap/merchant_detail_car1"
                         android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"
                         android:id="@+id/merchant_big_detail_card_is"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/merchant_detail_car1"
                         android:layout_width="151dp"
                         android:layout_height="103dp"/>
 
@@ -431,13 +432,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <ImageView
-
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        fresco:placeholderImage="@mipmap/merchant_detail_car2"
                         android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"
                         android:id="@+id/merchant_big_detail_card_the"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/merchant_detail_car2"
                         android:layout_width="151dp"
                         android:layout_height="103dp"/>
 
@@ -531,6 +531,7 @@
 
 
                     <EditText
+                        android:numeric="integer"
                         android:id="@+id/merchant_big_detail_id_number"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -548,54 +549,7 @@
                         android:layout_height="match_parent"/>
 
                 </RelativeLayout>
-<!--                <RelativeLayout-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:layout_marginLeft="12dp"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="50dp">-->
 
-<!--                    <TextView-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:id="@+id/merchants_big_detail_tv15"-->
-<!--                        android:layout_centerVertical="true"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="法人身份证有效期"-->
-<!--                        android:textColor="#4C4C4C"-->
-<!--                        android:textSize="12sp"-->
-<!--                        />-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/merchants_big_detail_tv16"-->
-<!--                        android:textColor="#F80C0C"-->
-<!--                        android:layout_toRightOf="@+id/merchants_big_detail_tv15"-->
-<!--                        android:layout_centerVertical="true"-->
-<!--                        android:text="*"-->
-<!--                        android:textSize="12sp"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"/>-->
-
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/merchant_big_detail_id_year"-->
-<!--                        android:maxLines="1"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:paddingRight="12dp"-->
-<!--                        android:gravity="center_vertical|right"-->
-<!--                        android:layout_centerVertical="true"-->
-<!--                        android:background="@null"-->
-<!--                        android:textSize="12sp"-->
-<!--                        android:hint="请选择有效期"-->
-<!--                        android:layout_marginLeft="15dp"-->
-<!--                        android:layout_toRightOf="@+id/merchants_big_detail_tv16"-->
-<!--                        android:layout_marginRight="15dp"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"/>-->
-
-
-
-<!--                </RelativeLayout>-->
 
                 <RelativeLayout
                     android:layout_marginLeft="12dp"
@@ -652,11 +606,23 @@
 
             </LinearLayout>
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/merchant_detail_audit"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/txy_red"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/merchant_big_detail_line3"
+                android:text="*审核失败"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/merchant_big_detail_submit"
                 android:background="#186090"
                 android:layout_marginTop="30dp"
-                android:layout_below="@+id/merchant_big_detail_line3"
+                android:layout_below="@+id/merchant_detail_audit"
                 android:layout_alignParentBottom="true"
                 android:textColor="#ffffff"
                 android:textSize="15sp"

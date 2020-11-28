@@ -1,13 +1,20 @@
 package com.example.newpost.net;
 
+import android.net.wifi.WifiInfo;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +81,34 @@ public class CommonRequest {
         .build();
     return request;
   }
+
+  public static Request createPostRequest2(String url,String bearer, RequestParams params,List<MermachineBean> mermachineBeans) {
+    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    //将请求参数逐一遍历添加到我们的请求构建类中
+    Map<String, Object> map = new HashMap<String, Object>();
+    for (Map.Entry<String, String> entry : params.urlParams.entrySet()) {
+      map.put(entry.getKey(),entry.getValue());
+    }
+    map.put("list",mermachineBeans);
+    //map转json对象
+    Gson gson = new Gson();
+    String jsonString_2 = gson.toJson(map);
+    JsonObject jsonObject_2 = new JsonParser().parse(jsonString_2).getAsJsonObject();
+    if (!TextUtils.isEmpty(bearer)){
+      bearer = "Bearer "+bearer;
+    }else {
+      bearer = "";
+    }
+    RequestBody body = RequestBody.create(JSON,jsonObject_2+"");
+    Request request = new Request.Builder()
+            .addHeader("Authorization",bearer)
+            .url(url)
+            .post(body)
+            .build();
+    return request;
+  }
+
+
 
   /**
    * 创建Post请求的Request

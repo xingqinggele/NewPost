@@ -1,25 +1,18 @@
 package com.example.newpost.home_fragment.home_merchants.newmerchants;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +27,7 @@ import com.example.newpost.bean.JsonBean;
 import com.example.newpost.cos.CosServiceFactory;
 import com.example.newpost.home_fragment.home_merchants.newmerchants.bean.MerChantinformationBean;
 import com.example.newpost.home_fragment.home_merchants.newmerchants.bean.Merchants2DetailBean;
+import com.example.newpost.home_fragment.home_merchants.newmerchants.state.MerchantsDetailSubActivity;
 import com.example.newpost.net.HttpRequest;
 import com.example.newpost.net.OkHttpException;
 import com.example.newpost.net.RequestParams;
@@ -76,9 +70,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 作者: qgl
@@ -116,7 +108,7 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
     private TextView merchant_detail_city;     // 开户城市
     private Button merchant_detail_submit;     // 开户城市
     private EditText merchant_detail2_et_bg;     // 验证码
-    private boolean isOrc = false;  //腾讯云识别银行卡是否允许
+    private boolean isOrc = true;  //腾讯云识别银行卡是否允许
     //已经选择图片
     private List<LocalMedia> selectList = new ArrayList<>();
     //照片选择最大值
@@ -142,7 +134,6 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
     private COSXMLUploadTask cosxmlTask;
     private String folderName = "";
     private String bucketName = "cykj-1303987307";
-    private String url1;
     private String mctBankType = "";  // 开户行ID
 
     @Override
@@ -237,7 +228,6 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
             merchants_detail2_phone.setText(getIntent().getStringExtra("mctPhoneLo"));
             mctBankType = getIntent().getStringExtra("bankName_id");
             MCT_ID = getIntent().getStringExtra("MCT_ID");
-
         } else {
             userType = true;
         }
@@ -321,62 +311,51 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
                 loadDialog.show();
                 folderName = TimeUtils.getNowTime() + "/" + Merchants_number;
                 List<MerChantinformationBean> beans = new ArrayList<>();
-                MerChantinformationBean bean   = new MerChantinformationBean();
                 if (!ID_Card_positive_Type.equals("1")) {
                     // 需要存储的
+                    MerChantinformationBean bean = new MerChantinformationBean();
                     bean.setName("1");
                     bean.setUrl(idCard_is);
                     beans.add(bean);
                 }
                 if (!ID_Card_reverse_Type.equals("1")) {
-
-
+                    MerChantinformationBean bean = new MerChantinformationBean();
                     bean.setName("2");
                     bean.setUrl(idCard_no);
                     beans.add(bean);
                 }
                 if (!ID_Card_handheld_Type.equals("1")) {
-
+                    MerChantinformationBean bean = new MerChantinformationBean();
                     bean.setName("3");
                     bean.setUrl(idCard_take);
                     beans.add(bean);
 
                 }
                 if (!Bank_Type.equals("1")) {
+                    MerChantinformationBean bean = new MerChantinformationBean();
                     bean.setName("4");
                     bean.setUrl(Bank_URL);
                     beans.add(bean);
                 }
 
                 //判断新增，修改
-                if (userType){
+                if (userType) {
                     if (beans.get(0).getName() == null) {
                         Log.e("------》", "没有需要上传的图片");
                         subMit();
                     } else {
+                        Log.e("------》", "需要上传图片");
                         for (int i = 0; i < beans.size(); i++) {
-                            upload1(beans.get(i).getName(), folderName, beans.get(i).getUrl());
+                            upload1(beans, folderName, userType);
                         }
-                        new Handler().postDelayed(new Runnable() {
-                            public void run() {
-                                subMit();
-                            }
-                        }, 5000);
                     }
 
-                }else {
-                    if (beans.get(0).getName() == null) {
+                } else {
+                    if (beans.size() == 0) {
                         Log.e("------》", "没有需要上传的图片");
                         Modify_SubMit();
                     } else {
-                        for (int i = 0; i < beans.size(); i++) {
-                            upload1(beans.get(i).getName(), folderName, beans.get(i).getUrl());
-                        }
-//                        new Handler().postDelayed(new Runnable() {
-//                            public void run() {
-//                                Modify_SubMit();
-//                            }
-//                        }, 5000);
+                        upload1(beans, folderName, userType);
                     }
                 }
                 break;
@@ -398,7 +377,7 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
             }
             if (retBitmap != null) {
                 merchant_detail2_bank.setImageBitmap(retBitmap);
-                url1 = ImageConvertUtil.getFile(retBitmap).getCanonicalPath();
+                Bank_URL = ImageConvertUtil.getFile(retBitmap).getCanonicalPath();
                 Bank_Type = "2";
             }
 
@@ -408,8 +387,17 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
         if (!response.isEmpty()) {
             final BankCardInfo bankCardInfo = new Gson().fromJson(response, BankCardInfo.class);
             Log.e("银行卡", bankCardInfo.getCardNo() + "----" + bankCardInfo.getBankInfo());
+            for (int i = 0;i < mdBean.size();i++){
+                if (mdBean.get(i).getBankName().equals(bankCardInfo.getBankInfo().substring(0,bankCardInfo.getBankInfo().length()-10))){
+                    mctBankType = mdBean.get(i).getBankId();
+                    Log.e("银行ID",mdBean.get(i).getBankId());
+                }
+                else {
+                    Log.e("不一样",mdBean.get(i).getBankId());
+                }
+            }
             merchant_detail2_number.setText(bankCardInfo.getCardNo());
-            merchant_detail_address.setText(bankCardInfo.getBankInfo());
+            merchant_detail_address.setText(bankCardInfo.getBankInfo().substring(0,bankCardInfo.getBankInfo().length()-10));
         } else {
             //Toast.makeText(this, "result is empty", Toast.LENGTH_SHORT).show();
         }
@@ -645,7 +633,9 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
             @Override
             public void onSuccess(Object responseObj) {
                 loadDialog.dismiss();
-                startActivity(new Intent(MerchantsDetailActivity22.this, MerchantsDetailSubActivity.class));
+                Intent intent = new Intent(MerchantsDetailActivity22.this, MerchantsDetailSubActivity.class);
+                intent.putExtra("parent_class", "1");
+                startActivity(intent);
             }
 
             @Override
@@ -676,24 +666,26 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
         // 初始化SDK
         OcrSDKKit.getInstance().initWithConfig(this.getApplicationContext(), configBuilder);
     }
+
     /**
      * 上传图片,对象存储
      */
-    private void upload1(String type, String newfolderName, String url) {
-        if (TextUtils.isEmpty(url)) {
+    private void upload1(List<MerChantinformationBean> list, String newfolderName, boolean userType) {
+        int i = 0;
+        if (TextUtils.isEmpty(list.get(i).getUrl())) {
             return;
         }
 
         if (cosxmlTask == null) {
-            File file = new File(url);
+            File file = new File(list.get(i).getUrl());
             String cosPath;
             if (TextUtils.isEmpty(newfolderName)) {
                 cosPath = file.getName();
             } else {
                 cosPath = newfolderName + File.separator + file.getName();
             }
-            cosxmlTask = transferManager.upload(bucketName, cosPath, url, null);
-            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + url);
+            cosxmlTask = transferManager.upload(bucketName, cosPath, list.get(i).getUrl(), null);
+            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + list.get(i).getUrl());
 
             cosxmlTask.setTransferStateListener(new TransferStateListener() {
                 @Override
@@ -715,20 +707,31 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
                     cosxmlTask = null;
                     //  setResult(RESULT_OK);
                     Log.e("1111", "成功");
-                    if (type.equals("1")) {
+                    if (list.get(i).getName().equals("1")) {
                         idCard_is = cOSXMLUploadTaskResult.accessUrl;
                         Log.e("身份证正面", cOSXMLUploadTaskResult.accessUrl);
-                    } else if (type.equals("2")) {
+                    } else if (list.get(i).getName().equals("2")) {
                         idCard_no = cOSXMLUploadTaskResult.accessUrl;
                         Log.e("身份证反面", cOSXMLUploadTaskResult.accessUrl);
-                    } else if (type.equals("3")) {
+                    } else if (list.get(i).getName().equals("3")) {
                         idCard_take = cOSXMLUploadTaskResult.accessUrl;
                         Log.e("手持身份证", cOSXMLUploadTaskResult.accessUrl);
                     } else {
                         Bank_URL = cOSXMLUploadTaskResult.accessUrl;
                         Log.e("银行卡", cOSXMLUploadTaskResult.accessUrl);
                     }
-
+                    setResult(RESULT_OK);
+                    list.remove(i);
+                    if (list.size() < 1) {
+                        Log.e("----------》", "没有了去提交后台吧");
+                        if (userType) {
+                            subMit();
+                        } else {
+                            Modify_SubMit();
+                        }
+                    } else {
+                        upload1(list, newfolderName, userType);
+                    }
                 }
 
                 @Override
@@ -747,41 +750,43 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
     }
 
     //修改操作
-    public void Modify_SubMit(){
-            RequestParams params = new RequestParams();
-            params.put("mctId", MCT_ID);  //ID
-            params.put("mctType", "0");  //类型 0 小微，1 企业
-            params.put("mctScope", Merchants_type);  // 营业类型 ID
-            params.put("mctCity", Merchants_adress);  // 地区
-            params.put("mctAddress", Merchants_deteils_adress); // 详细地址
-            params.put("mctCardFileY", idCard_is); //身份证正面
-            params.put("mctCardFileN", idCard_no); // 身份证反面
-            params.put("mctCardFileHand", idCard_take); // 手持身份证
-            params.put("mctUserName", Merchants_name); // 用户姓名
-            params.put("mctCartNum", Merchants_number); // 身份证号码
-            params.put("mctCartAging", Merchants_year); // 身份证有效期
-            params.put("mctBankRegion", merchant_detail_city.getText().toString().trim()); //开户地区
-            params.put("mctBankNum", merchant_detail2_number.getText().toString().trim()); // 银行卡号
-            params.put("mctBankType", mctBankType); // 开户行ID
-            params.put("mctBankPhone", merchants_detail2_reserved_phone.getText().toString().trim()); // 预留手机号
-            params.put("mctBankFile", Bank_URL);  // 银行卡照片
-            params.put("mctPhoneLo", merchants_detail2_phone.getText().toString().trim());  //验证码电话
-            params.put("mctCodeLo", merchant_detail2_et_bg.getText().toString().trim());  //验证码
-            HttpRequest.getModifyMerchant(params, SPUtils.get(MerchantsDetailActivity22.this, "Token", "-1").toString(), new ResponseCallback() {
-                @Override
-                public void onSuccess(Object responseObj) {
-                    loadDialog.dismiss();
-                    startActivity(new Intent(MerchantsDetailActivity22.this, MerchantsDetailSubActivity.class));
-                }
+    public void Modify_SubMit() {
+        RequestParams params = new RequestParams();
+        params.put("mctId", MCT_ID);  //ID
+        params.put("mctType", "0");  //类型 0 小微，1 企业
+        params.put("mctScope", Merchants_type);  // 营业类型 ID
+        params.put("mctCity", Merchants_adress);  // 地区
+        params.put("mctAddress", Merchants_deteils_adress); // 详细地址
+        params.put("mctCardFileY", idCard_is); //身份证正面
+        params.put("mctCardFileN", idCard_no); // 身份证反面
+        params.put("mctCardFileHand", idCard_take); // 手持身份证
+        params.put("mctUserName", Merchants_name); // 用户姓名
+        params.put("mctCartNum", Merchants_number); // 身份证号码
+        params.put("mctCartAging", Merchants_year); // 身份证有效期
+        params.put("mctBankRegion", merchant_detail_city.getText().toString().trim()); //开户地区
+        params.put("mctBankNum", merchant_detail2_number.getText().toString().trim()); // 银行卡号
+        params.put("mctBankType", mctBankType); // 开户行ID
+        params.put("mctBankPhone", merchants_detail2_reserved_phone.getText().toString().trim()); // 预留手机号
+        params.put("mctBankFile", Bank_URL);  // 银行卡照片
+        params.put("mctPhoneLo", merchants_detail2_phone.getText().toString().trim());  //验证码电话
+        params.put("mctCodeLo", merchant_detail2_et_bg.getText().toString().trim());  //验证码
+        HttpRequest.getModifyMerchant(params, SPUtils.get(MerchantsDetailActivity22.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                loadDialog.dismiss();
+                Intent intent = new Intent(MerchantsDetailActivity22.this, MerchantsDetailSubActivity.class);
+                intent.putExtra("parent_class", "1");
+                startActivity(intent);
+            }
 
-                @Override
-                public void onFailure(OkHttpException failuer) {
-                    loadDialog.dismiss();
-                    Failuer(failuer.getEcode(),failuer.getEmsg());
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                loadDialog.dismiss();
+                Failuer(failuer.getEcode(), failuer.getEmsg());
 
-                }
-            });
-        }
+            }
+        });
+    }
 
 
 }

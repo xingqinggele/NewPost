@@ -1,5 +1,7 @@
 package com.example.newpost.net;
 
+import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+
 import java.io.File;
 import java.util.List;
 
@@ -43,6 +45,19 @@ public class RequestMode {
    */
   public static void postRequest1(String url, RequestParams params, String token,ResponseCallback callback, Class<?> clazz) {
     CommonOkHttpClient.post(CommonRequest.createPostRequest1(url,token, params),
+            new ResposeDataHandle(callback, clazz));
+  }
+
+
+  /**
+   * POST请求 原来的
+   * @param url URL请求地址
+   * @param params 入参
+   * @param callback 回调接口
+   * @param clazz 需要解析的实体类
+   */
+  public static void postRequest2(String url, RequestParams params, String token, List<MermachineBean> mermachineBeans,ResponseCallback callback, Class<?> clazz) {
+    CommonOkHttpClient.post(CommonRequest.createPostRequest2(url,token, params,mermachineBeans),
             new ResposeDataHandle(callback, clazz));
   }
 

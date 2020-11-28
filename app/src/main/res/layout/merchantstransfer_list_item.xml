@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayour_item_view_show"
+    android:layout_marginBottom="8dp">
+
+    <CheckBox
+        android:layout_alignParentLeft="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/checkBox_item_many_multiselect_view_show"
+        android:background="@mipmap/checkbox_empty"
+        android:layout_centerVertical="true"
+        android:clickable="false"
+        android:button="@null"
+        android:focusable="false"
+   />
+
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/checkBox_item_many_multiselect_view_show"
+        android:id="@+id/textView_item_many_title_view"
+        android:layout_marginLeft="10dp"
+        android:text="序列号: 01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

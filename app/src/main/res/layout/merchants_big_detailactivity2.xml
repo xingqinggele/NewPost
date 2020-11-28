@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="#F3F3F3">
 
     <RelativeLayout
@@ -290,6 +291,7 @@
 
 
                     <TextView
+                        android:textColor="#000000"
                         android:id="@+id/merchant_big_detail2_region"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -300,7 +302,6 @@
                         android:layout_toRightOf="@+id/merchants_big_detail_tv66"
                         android:gravity="right"
                         android:hint="请选择开户地区"
-                        android:text=""
                         android:textSize="12sp" />
 
                     <ImageView
@@ -348,6 +349,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_big_detail2_account"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -400,6 +402,7 @@
 
 
                     <TextView
+                        android:textColor="#000000"
                         android:id="@+id/merchant_big_detail2_bank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -458,6 +461,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_big_detail2_kh_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -510,6 +514,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_big_detail2_kh_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -561,7 +566,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="30dp"
-                        android:text="法人身份证上传"
+                        android:text="结算卡上传"
                         android:textColor="#4C4C4C"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -603,14 +608,15 @@
                         android:textColor="#F80C0C"
                         android:textSize="12sp" />
 
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        fresco:placeholderImage="@mipmap/merchant_detail_bank_car"
                         android:id="@+id/merchant_big_detail2_bank_card"
                         android:layout_width="151dp"
                         android:layout_height="103dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="15dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/merchant_detail_bank_car" />
+                      />
 
                 </RelativeLayout>
 
@@ -690,14 +696,15 @@
                         android:textColor="#F80C0C"
                         android:textSize="12sp" />
 
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        fresco:placeholderImage="@mipmap/merchant_big_details2_author"
                         android:id="@+id/merchant_big_detail2_author"
                         android:layout_width="151dp"
                         android:layout_height="103dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="15dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/merchant_big_details2_author" />
+                      />
 
                 </RelativeLayout>
 

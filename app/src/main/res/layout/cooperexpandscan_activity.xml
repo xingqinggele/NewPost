@@ -52,12 +52,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<!--    android:src="@mipmap/cooperexpandscan_code"-->
     <ImageView
+        android:id="@+id/or_code"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="12dp"
-        android:src="@mipmap/cooperexpandscan_code"
+        android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cooperexpandscan_tv_code" />

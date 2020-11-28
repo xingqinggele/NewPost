@@ -214,6 +214,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_detail2_number"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -262,7 +263,7 @@
 
 
                     <TextView
-                        android:textColor="#4C4C4C"
+                        android:textColor="#000000"
                         android:gravity="right"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/merchants_detail2_tv6"
@@ -318,7 +319,7 @@
 
                     <TextView
                         android:id="@+id/merchant_detail_city"
-                        android:textColor="#4C4C4C"
+                        android:textColor="#000000"
                         android:gravity="right"
                         android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@+id/merchants_detail2_tv8"
@@ -373,6 +374,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchants_detail2_reserved_phone"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -433,6 +435,7 @@
                 </RelativeLayout>
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchants_detail2_phone"
                         android:layout_marginLeft="12dp"
                         android:maxLines="1"
@@ -458,6 +461,7 @@
                     android:layout_height="50dp">
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_detail2_et_bg"
                         android:layout_toLeftOf="@+id/merchant_detail2_verification_code"
                         android:maxLines="1"

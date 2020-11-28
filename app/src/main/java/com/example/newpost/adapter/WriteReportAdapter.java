@@ -20,11 +20,7 @@ public class WriteReportAdapter extends BaseQuickAdapter<Bean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder holder, Bean report) {
 
-        if(report.getPrice()%2 == 1){   //是奇数
 
-        }else {
-            holder.setBackgroundColor(R.id.liner, Color.parseColor("#FBF9F5"));
-        }
     }
 
 }

@@ -282,6 +282,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_detail_name"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -331,6 +332,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_detail_card_number"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -495,6 +497,7 @@
 
 
                     <EditText
+                        android:textColor="#000000"
                         android:id="@+id/merchant_details_address_detail"
                         android:maxLines="1"
                         android:singleLine="true"

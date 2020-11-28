@@ -1,4 +1,4 @@
-package com.example.newpost.home_fragment.home_merchants.newmerchants;
+package com.example.newpost.home_fragment.home_merchants.newmerchants.state;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.example.newpost.useractivity.LoginActivity;
  */
 public class MerchantsDetailSubActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout iv_back;
+    private String parent_class = "0"; // 父类 0 选择页 1提交页
     @Override
     protected int getLayoutId() {
         return R.layout.merchantsdetailsubactivity;
@@ -30,19 +31,23 @@ public class MerchantsDetailSubActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void initData() {
-
+        parent_class = getIntent().getStringExtra("parent_class");
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iv_back:
-                for (Activity ac : activitys) {
-                    if (ac != null) {
-                        ac.finish();
+                if (parent_class.equals("0")){
+                    finish();
+                }else {
+                    for (Activity ac : activitys) {
+                        if (ac != null) {
+                            ac.finish();
+                        }
                     }
+                    startActivity(new Intent(mContext, MainActivity.class));
                 }
-                startActivity(new Intent(mContext, MainActivity.class));
                 break;
         }
     }

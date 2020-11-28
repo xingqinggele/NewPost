@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +27,8 @@ import com.example.newpost.R;
 import com.example.newpost.base.BaseActivity;
 import com.example.newpost.bean.IdCardInfo;
 import com.example.newpost.bean.JsonBean;
-import com.example.newpost.cos.CosServiceFactory;
 import com.example.newpost.home_fragment.home_merchants.newmerchants.bean.MerchantsDetailBean;
+import com.example.newpost.home_fragment.home_merchants.newmerchants.state.MerchantsDetailSubActivity;
 import com.example.newpost.net.HttpRequest;
 import com.example.newpost.net.OkHttpException;
 import com.example.newpost.net.RequestParams;
@@ -37,8 +36,8 @@ import com.example.newpost.net.ResponseCallback;
 import com.example.newpost.utils.GetJsonDataUtil;
 import com.example.newpost.utils.ImageConvertUtil;
 import com.example.newpost.utils.SPUtils;
-import com.example.newpost.utils.TimeUtils;
 import com.example.newpost.utils.Utility;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -46,18 +45,6 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.tencent.cos.xml.CosXmlService;
-import com.tencent.cos.xml.exception.CosXmlClientException;
-import com.tencent.cos.xml.exception.CosXmlServiceException;
-import com.tencent.cos.xml.listener.CosXmlProgressListener;
-import com.tencent.cos.xml.listener.CosXmlResultListener;
-import com.tencent.cos.xml.model.CosXmlRequest;
-import com.tencent.cos.xml.model.CosXmlResult;
-import com.tencent.cos.xml.transfer.COSXMLUploadTask;
-import com.tencent.cos.xml.transfer.TransferConfig;
-import com.tencent.cos.xml.transfer.TransferManager;
-import com.tencent.cos.xml.transfer.TransferState;
-import com.tencent.cos.xml.transfer.TransferStateListener;
 import com.tencent.ocr.sdk.common.ISDKKitResultListener;
 import com.tencent.ocr.sdk.common.OcrModeType;
 import com.tencent.ocr.sdk.common.OcrSDKConfig;
@@ -81,7 +68,46 @@ import static com.example.newpost.utils.checkID.validateCard;
  * 创建日期：2020/10/31
  * 描述:新增企业商户1
  */
-public class MerchantsBigDetailActivity1 extends BaseActivity implements View.OnClickListener {
+public class MerchantsBigDetailActivity11 extends BaseActivity implements View.OnClickListener {
+    private String MerchantsBig_IDCard_IS = ""; //身份证正面
+    private String MerchantsBig_IDCard_IS_TYPE = "1"; //身份证类型
+    private String MerchantsBig_IDCard_NO = ""; //身份证反面
+    private String MerchantsBig_IDCard_NO_TYPE = "1"; //身份证类型
+    private String MerchantsBig_Bank = ""; //银行卡照片
+    private String MerchantsBig_Bank_TYPE = "1"; //银行卡类型
+    private String MerchantsBig_Shouquan = ""; //授权书照片
+    private String MerchantsBig_Shouquan_TYPE = "1"; //授权书类型
+    private boolean userType = true; // 用户进入状态，ture 新增，false 修改或查看
+    private TextView merchant_detail_audit;
+    private String mctScope = "1"; // 营业类型ID
+    private String MerchantsBig_License = ""; // 营业执照照片
+    private String MerchantsBig_LicenseType = "1"; // 营业执照类型
+    private String MerchantsBig_handheld_License = ""; // 手持营业执照照片
+    private String MerchantsBig_handheld_LicenseType = "1"; // 手持营业执照类型
+    private String MerchantsBig_IMG1 = "";
+    private String MerchantsBig_IMG1_TYPE = "1";
+    private String MerchantsBig_IMG2 = "";
+    private String MerchantsBig_IMG2_TYPE = "1";
+    private String MerchantsBig_IMG3 = "";
+    private String MerchantsBig_IMG3_TYPE = "1";
+    private String MerchantsBig_IMG4 = "";
+    private String MerchantsBig_IMG4_TYPE = "1";
+    private String MCT_ID = ""; //详情ID
+    private String mctSettleType = "0";//结算类型
+    private String mctSettleLegal = "0";//是否法人
+    private String mctBankRegion = "";//开户地区
+    private String mctBankNum = "";//开户账号
+    private String mctBankType = "";//开户行
+    private String mctBankType_ID = "";//开户行ID
+    private String mctBankUser = "";//开户人姓名
+    private String mctBankPhone = "";//开户人预留手机号
+
+    private String mctPermitType = "";//营业执照类型
+    private String mctPermitNum = "";//营业执照编号
+    private String mctPermitAging = "";//营业执照有效期
+    private String mctPhoneLo = "";//营业执照手机号
+
+
     private LinearLayout iv_back;
     private Button merchant_big_detail_submit;
     private TextView merchant_big_detail_address;
@@ -101,9 +127,9 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
     private Thread thread;
     private static boolean isLoaded = false;
     //身份证正面
-    private ImageView merchant_big_detail_card_is;
+    private SimpleDraweeView merchant_big_detail_card_is;
     // 身份证反面
-    private ImageView merchant_big_detail_card_the;
+    private SimpleDraweeView merchant_big_detail_card_the;
     // 腾讯云ORC是否启用状态
     private boolean OrcType = false;  // true 启用，false不启用
     private static final int Id_POSITIVE = 00201;   // 身份证正面
@@ -113,8 +139,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
     private String IdName; //身份证名字
     private String IdNumber; // 身份证号码
     private String IdValidDate; //身份证有效期
-    private Bitmap bitmap1;
-    private Bitmap bitmap2;
+
     //已经选择图片
     private List<LocalMedia> selectList = new ArrayList<>();
     //照片选择最大值
@@ -123,17 +148,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
     private List<MerchantsDetailBean> mdBean = new ArrayList<>();
     // 选择控件
     private OptionsPickerView reasonPicker;
-    private String mctScope = ""; // 营业类型ID
-    // 上传图片
-    private String url1;
-    private String url2;
-    private CosXmlService cosXmlService;
-    private TransferManager transferManager;
-    private COSXMLUploadTask cosxmlTask;
-    private String folderName = "";
-    private String bucketName = "cykj-1303987307";
-    private String idCardIs_url = "";//身份证正面
-    private String idCardNo_url = ""; //身份证反面
+
 
     @Override
     protected int getLayoutId() {
@@ -142,13 +157,13 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
 
     @Override
     protected void initView() {
-        secretId = SPUtils.get(MerchantsBigDetailActivity1.this, "secretId", "-1").toString();
-        secretKey = SPUtils.get(MerchantsBigDetailActivity1.this, "secretKey", "-1").toString();
-        cosXmlService = CosServiceFactory.getCosXmlService(this, "ap-beijing", secretId, secretKey, true);
-        TransferConfig transferConfig = new TransferConfig.Builder().build();
-        transferManager = new TransferManager(cosXmlService, transferConfig);
+        getMerchant();
+
+        secretId = SPUtils.get(MerchantsBigDetailActivity11.this, "secretId", "-1").toString();
+        secretKey = SPUtils.get(MerchantsBigDetailActivity11.this, "secretKey", "-1").toString();
         iv_back = findViewById(R.id.iv_back);
         merchant_big_detail_submit = findViewById(R.id.merchant_big_detail_submit);
+        merchant_detail_audit = findViewById(R.id.merchant_detail_audit);
         iv_back.setOnClickListener(this);
         merchant_big_detail_submit.setOnClickListener(this);
         merchant_big_detail_address = findViewById(R.id.merchant_big_detail_address);
@@ -180,11 +195,11 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                 finish();
                 break;
             case R.id.merchant_big_detail_submit:
-                if (bitmap1 == null) {
+                if (TextUtils.isEmpty(MerchantsBig_IDCard_IS)) {
                     showToast("请上传身份证正面照片");
                     return;
                 }
-                if (bitmap2 == null) {
+                if (TextUtils.isEmpty(MerchantsBig_IDCard_NO)) {
                     showToast("请上传身份证反面照片");
                     return;
                 }
@@ -220,39 +235,82 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                     showToast("请选输入正确的身份证号");
                     return;
                 }
-                loadDialog.show();
-                try {
-                    url1 = ImageConvertUtil.getFile(bitmap1).getCanonicalPath();
-                    url2 = ImageConvertUtil.getFile(bitmap2).getCanonicalPath();
-                    //,文件名称
-                    folderName = TimeUtils.getNowTime() + "/" + merchant_big_detail_id_number.getText().toString().trim();
-                    //开始上传图片
-                    upload(folderName, url1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
+                Intent intent = new Intent(MerchantsBigDetailActivity11.this, MerchantsBigDetailActivity22.class);
+                intent.putExtra("big_shopName", merchant_big_detail_name.getText().toString().trim());
+                intent.putExtra("big_shopScope", mctScope);
+                intent.putExtra("big_shopAddress", merchant_big_detail_address.getText().toString().trim());
+                intent.putExtra("big_shopDetailAddress", merchant_big_detail_detail_address.getText().toString().trim());
+                intent.putExtra("big_shopIdis", MerchantsBig_IDCard_IS);
+                intent.putExtra("big_shopIdno", MerchantsBig_IDCard_NO);
+                intent.putExtra("big_shopIdno_type", MerchantsBig_IDCard_IS_TYPE);
+                intent.putExtra("big_shopIdno_type", MerchantsBig_IDCard_NO_TYPE);
+                intent.putExtra("big_shopUserName", merchant_big_detail_id_name.getText().toString().trim());
+                intent.putExtra("big_shopUserNumber", merchant_big_detail_id_number.getText().toString().trim());
+                intent.putExtra("big_shopYear", merchant_big_detail_card_year.getText().toString().trim());
+                if (userType) {
+                    intent.putExtra("userType", "0");
+                } else {
+                    intent.putExtra("userType", "1");
+                    intent.putExtra("MerchantsBig_Bank", MerchantsBig_Bank);
+                    intent.putExtra("MerchantsBig_Bank_TYPE", MerchantsBig_Bank_TYPE);
+                    intent.putExtra("MerchantsBig_Shouquan", MerchantsBig_Shouquan);
+                    intent.putExtra("MerchantsBig_Shouquan_TYPE", MerchantsBig_Shouquan_TYPE);
+                    intent.putExtra("MerchantsBig_License", MerchantsBig_License);
+                    intent.putExtra("MerchantsBig_LicenseType", MerchantsBig_LicenseType);
+                    intent.putExtra("MerchantsBig_handheld_License", MerchantsBig_handheld_License);
+                    intent.putExtra("MerchantsBig_handheld_LicenseType", MerchantsBig_handheld_LicenseType);
+                    intent.putExtra("MerchantsBig_IMG1", MerchantsBig_IMG1);
+                    intent.putExtra("MerchantsBig_IMG1_TYPE", MerchantsBig_IMG1_TYPE);
+                    intent.putExtra("MerchantsBig_IMG2", MerchantsBig_IMG2);
+                    intent.putExtra("MerchantsBig_IMG2_TYPE", MerchantsBig_IMG2_TYPE);
+                    intent.putExtra("MerchantsBig_IMG3", MerchantsBig_IMG3);
+                    intent.putExtra("MerchantsBig_IMG3_TYPE", MerchantsBig_IMG3_TYPE);
+                    intent.putExtra("MerchantsBig_IMG4", MerchantsBig_IMG4);
+                    intent.putExtra("MerchantsBig_IMG4_TYPE", MerchantsBig_IMG4_TYPE);
+
+                    intent.putExtra("MCT_ID", MCT_ID);
+                    intent.putExtra("mctSettleType", mctSettleType);
+                    intent.putExtra("mctSettleLegal", mctSettleLegal);
+                    intent.putExtra("mctBankRegion", mctBankRegion);
+                    intent.putExtra("mctBankNum", mctBankNum);
+                    intent.putExtra("mctBankType", mctBankType);
+                    intent.putExtra("mctBankType_ID", mctBankType_ID);
+                    intent.putExtra("mctBankUser", mctBankUser);
+                    intent.putExtra("mctBankPhone", mctBankPhone);
+                    intent.putExtra("mctPermitType", mctPermitType);
+                    intent.putExtra("mctPermitNum", mctPermitNum);
+                    intent.putExtra("mctPermitAging", mctPermitAging);
+                    intent.putExtra("mctPhoneLo", mctPhoneLo);
+                }
+                startActivity(intent);
                 break;
             case R.id.merchant_big_detail_address:
                 if (isLoaded) {
                     showPickerView();
                 } else {
-                    Toast.makeText(MerchantsBigDetailActivity1.this, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchantsBigDetailActivity11.this, "Please waiting until the data is parsed", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.merchant_big_detail_card_is:
                 initSdk(secretId, secretKey);
                 if (OrcType) {
                     //弹出界面
-                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity1.this, OcrType.IDCardOCR_FRONT, null,
+                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity11.this, OcrType.IDCardOCR_FRONT, null,
                             new ISDKKitResultListener() {
                                 @Override
                                 public void onProcessSucceed(String response, String srcBase64Image, String requestId) {
                                     IdCardInfo tempIdCardInfo = new Gson().fromJson(response, IdCardInfo.class);
                                     Log.e("response", tempIdCardInfo.getRequestId());
                                     Bitmap bitmap = ImageConvertUtil.base64ToBitmap(srcBase64Image);
-                                    merchant_big_detail_card_is.setImageBitmap(bitmap);
-                                    bitmap1 = bitmap;
+                                    try {
+                                        if (bitmap != null)
+                                            merchant_big_detail_card_is.setImageBitmap(bitmap);
+                                        MerchantsBig_IDCard_IS = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                                        MerchantsBig_IDCard_IS_TYPE = "2";
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                     Log.e("姓名" + tempIdCardInfo.getName(), "身份证号码" + tempIdCardInfo.getIdNum());
                                     IdName = tempIdCardInfo.getName();
                                     IdNumber = tempIdCardInfo.getIdNum();
@@ -276,15 +334,22 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                 if (OrcType) {
                     initSdk(secretId, secretKey);
                     //身份证反面
-                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity1.this, OcrType.IDCardOCR_BACK, null,
+                    OcrSDKKit.getInstance().startProcessOcr(MerchantsBigDetailActivity11.this, OcrType.IDCardOCR_BACK, null,
                             new ISDKKitResultListener() {
                                 @Override
                                 public void onProcessSucceed(String response, String srcBase64Image, String requestId) {
                                     IdCardInfo tempIdCardInfo = new Gson().fromJson(response, IdCardInfo.class);
                                     Log.e("response", tempIdCardInfo.getRequestId());
                                     Bitmap bitmap = ImageConvertUtil.base64ToBitmap(srcBase64Image);
+                                    try {
+                                        if (bitmap != null)
+                                            merchant_big_detail_card_the.setImageBitmap(bitmap);
+                                        MerchantsBig_IDCard_NO = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                                        MerchantsBig_IDCard_NO_TYPE = "2";
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                     merchant_big_detail_card_the.setImageBitmap(bitmap);
-                                    bitmap2 = bitmap;
                                     IdValidDate = tempIdCardInfo.getValidDate();
                                     setResultListData();
                                 }
@@ -319,7 +384,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                 case MSG_LOAD_DATA:
                     if (thread == null) {//如果已创建就不再重新创建子线程了
 
-                        Toast.makeText(MerchantsBigDetailActivity1.this, "Begin Parse Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MerchantsBigDetailActivity11.this, "Begin Parse Data", Toast.LENGTH_SHORT).show();
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -332,12 +397,12 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                     break;
 
                 case MSG_LOAD_SUCCESS:
-                    Toast.makeText(MerchantsBigDetailActivity1.this, "Parse Succeed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchantsBigDetailActivity11.this, "Parse Succeed", Toast.LENGTH_SHORT).show();
                     isLoaded = true;
                     break;
 
                 case MSG_LOAD_FAILED:
-                    Toast.makeText(MerchantsBigDetailActivity1.this, "Parse Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchantsBigDetailActivity11.this, "Parse Failed", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -472,7 +537,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
     }
 
     /**
-     * 腾讯对象存储初始化
+     * 腾讯卡片识别初始化
      */
     private void initSdk(String secretId, String secretKey) {
         // 启动参数配置
@@ -543,7 +608,8 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                         Bitmap bitmap = BitmapFactory.decodeFile(selectList.get(0).getCompressPath());
                         if (bitmap != null) {
                             merchant_big_detail_card_is.setImageBitmap(bitmap);
-                            bitmap1 = bitmap;
+                            MerchantsBig_IDCard_IS = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                            MerchantsBig_IDCard_IS_TYPE = "2";
                         } else {
                             merchant_big_detail_card_is.setImageResource(R.mipmap.merchant_detail_car1);
                         }
@@ -567,8 +633,8 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                         Bitmap bitmap = BitmapFactory.decodeFile(selectList.get(0).getCompressPath());
                         if (bitmap != null) {
                             merchant_big_detail_card_the.setImageBitmap(bitmap);
-                            bitmap2 = bitmap;
-
+                            MerchantsBig_IDCard_NO = ImageConvertUtil.getFile(bitmap).getCanonicalPath();
+                            MerchantsBig_IDCard_NO_TYPE = "2";
                         } else {
                             merchant_big_detail_card_the.setImageResource(R.mipmap.merchant_detail_car2);
                         }
@@ -585,7 +651,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
      */
     public void getBankAndPlace() {
         RequestParams params = new RequestParams();
-        HttpRequest.getBankAndPlace(params, SPUtils.get(MerchantsBigDetailActivity1.this, "Token", "-1").toString(), new ResponseCallback() {
+        HttpRequest.getBankAndPlace(params, SPUtils.get(MerchantsBigDetailActivity11.this, "Token", "-1").toString(), new ResponseCallback() {
             @Override
             public void onSuccess(Object responseObj) {
                 //需要转化为实体对象
@@ -607,7 +673,7 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
                     showToast("登录过期，请重新登录");
                     // 退出登录,清除本地数据
                     SPUtils.clear(mContext);
-                    exitApp(MerchantsBigDetailActivity1.this);
+                    exitApp(MerchantsBigDetailActivity11.this);
                 } else {
                     showToast(failuer.getEmsg());
                 }
@@ -617,137 +683,109 @@ public class MerchantsBigDetailActivity1 extends BaseActivity implements View.On
 
     }
 
-    /**
-     * 上传图片,对象存储
-     */
-    private void upload(String newfolderName, String url) {
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        if (cosxmlTask == null) {
-            File file = new File(url);
-            String cosPath;
-            if (TextUtils.isEmpty(newfolderName)) {
-                cosPath = file.getName();
-            } else {
-                cosPath = newfolderName + File.separator + file.getName();
-            }
-            cosxmlTask = transferManager.upload(bucketName, cosPath, url, null);
-            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + url);
-
-            cosxmlTask.setTransferStateListener(new TransferStateListener() {
-                @Override
-                public void onStateChanged(final TransferState state) {
-                    // refreshUploadState(state);
-                }
-            });
-            cosxmlTask.setCosXmlProgressListener(new CosXmlProgressListener() {
-                @Override
-                public void onProgress(final long complete, final long target) {
-                    // refreshUploadProgress(complete, target);
-                }
-            });
-
-            cosxmlTask.setCosXmlResultListener(new CosXmlResultListener() {
-                @Override
-                public void onSuccess(CosXmlRequest request, CosXmlResult result) {
-                    COSXMLUploadTask.COSXMLUploadTaskResult cOSXMLUploadTaskResult = (COSXMLUploadTask.COSXMLUploadTaskResult) result;
-                    cosxmlTask = null;
-                    //  setResult(RESULT_OK);
-                    Log.e("1111", "成功");
-                    idCardIs_url = result.accessUrl;
-                    upload1(folderName, url2);
-                }
-
-                @Override
-                public void onFail(CosXmlRequest request, CosXmlClientException exception, CosXmlServiceException serviceException) {
-                    loadDialog.dismiss();
-                    if (cosxmlTask.getTaskState() != TransferState.PAUSED) {
-                        cosxmlTask = null;
-
-                        Log.e("1111", "上传失败");
-
-                    }
-                    exception.printStackTrace();
-                    serviceException.printStackTrace();
-                }
-            });
-
-        }
-    }
-
-    private void upload1(String newfolderName, String url) {
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        if (cosxmlTask == null) {
-            File file = new File(url);
-            String cosPath;
-            if (TextUtils.isEmpty(newfolderName)) {
-                cosPath = file.getName();
-            } else {
-                cosPath = newfolderName + File.separator + file.getName();
-            }
-            cosxmlTask = transferManager.upload(bucketName, cosPath, url, null);
-            Log.e("参数-------》", bucketName + "----" + cosPath + "---" + url);
-
-            cosxmlTask.setTransferStateListener(new TransferStateListener() {
-                @Override
-                public void onStateChanged(final TransferState state) {
-                    // refreshUploadState(state);
-                }
-            });
-            cosxmlTask.setCosXmlProgressListener(new CosXmlProgressListener() {
-                @Override
-                public void onProgress(final long complete, final long target) {
-                    // refreshUploadProgress(complete, target);
-                }
-            });
-
-            cosxmlTask.setCosXmlResultListener(new CosXmlResultListener() {
-                @Override
-                public void onSuccess(CosXmlRequest request, CosXmlResult result) {
-                    COSXMLUploadTask.COSXMLUploadTaskResult cOSXMLUploadTaskResult = (COSXMLUploadTask.COSXMLUploadTaskResult) result;
-                    cosxmlTask = null;
-                    // setResult(RESULT_OK);
-                    Log.e("2222", "长传成功");
-                    idCardNo_url = result.accessUrl;
-                    loadDialog.dismiss();
-                    Intent intent = new Intent(MerchantsBigDetailActivity1.this, MerchantsBigDetailActivity2.class);
-                    intent.putExtra("big_shopName",merchant_big_detail_name.getText().toString().trim());
-                    intent.putExtra("big_shopScope",mctScope);
-                    intent.putExtra("big_shopAddress",merchant_big_detail_address.getText().toString().trim());
-                    intent.putExtra("big_shopDetailAddress",merchant_big_detail_detail_address.getText().toString().trim());
-                    intent.putExtra("big_shopIdis",idCardIs_url);
-                    intent.putExtra("big_shopIdno",idCardNo_url);
-                    intent.putExtra("big_shopUserName",merchant_big_detail_id_name.getText().toString().trim());
-                    intent.putExtra("big_shopUserNumber",merchant_big_detail_id_number.getText().toString().trim());
-                    intent.putExtra("big_shopYear",merchant_big_detail_card_year.getText().toString().trim());
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onFail(CosXmlRequest request, CosXmlClientException exception, CosXmlServiceException serviceException) {
-                    loadDialog.dismiss();
-                    if (cosxmlTask.getTaskState() != TransferState.PAUSED) {
-                        cosxmlTask = null;
-
-                        Log.e("2222", "上传失败");
-
-                    }
-                    exception.printStackTrace();
-                    serviceException.printStackTrace();
-                }
-            });
-
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         OcrSDKKit.getInstance().release();
+    }
+
+
+    /*********开始--->查询是否入住过******/
+    /**
+     * 查询商户信息
+     */
+    public void getMerchant() {
+        RequestParams params = new RequestParams();
+        HttpRequest.getMerchant(params, SPUtils.get(MerchantsBigDetailActivity11.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    JSONObject result = new JSONObject(responseObj.toString());
+                    if (TextUtils.equals(result.getString("data"), "null")) {
+                        Log.e("aaaaaaaa", "aaaaaaa");
+                        // 新增用户
+                        userType = true;
+                    } else {
+                        // 修改或者是查看
+                        Log.e("bbbbbbbbbbb", "aaaaaaa");
+                        userType = false;
+                        JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                        String mctAuditState = data.getString("mctAuditState");
+//                        if (mctAuditState.equals("1")) {
+//                            // 审核中不让查看
+//                            merchant_detail_audit.setVisibility(View.GONE);
+//                            startActivity(new Intent(MerchantsBigDetailActivity11.this, MerchantsDetailSubActivity.class));
+//                            finish();
+//                        }else if (mctAuditState.equals("2")) {
+//                            // 审核成功可以查看，开始赋值
+//                            merchant_detail_audit.setVisibility(View.GONE);
+//                        } else {
+//                            // 审核驳回可以查看，开始赋值
+//                            merchant_detail_audit.setVisibility(View.VISIBLE);
+//                        }
+
+                        MerchantsBig_IDCard_IS = data.getString("mctCardFileY");
+                        MerchantsBig_IDCard_IS_TYPE = "1";
+                        MerchantsBig_IDCard_NO = data.getString("mctCardFileN");
+                        MerchantsBig_IDCard_NO_TYPE = "1";
+                        MerchantsBig_Bank = data.getString("mctBankFile");
+                        MerchantsBig_Bank_TYPE = "1";
+                        MerchantsBig_Shouquan = data.getString("mctPowerFile");
+                        MerchantsBig_Shouquan_TYPE = "1";
+                        MerchantsBig_License = data.getString("mctPermitFile");
+                        MerchantsBig_LicenseType = "1";
+                        MerchantsBig_handheld_License = data.getString("mctPermitFileHand");
+                        MerchantsBig_handheld_LicenseType = "1";
+                        if (!data.getString("mctPlaceFile").equals("###")) {
+                            String[] split = data.getString("mctPlaceFile").split("#");
+                            MerchantsBig_IMG1 = split[0];
+                            MerchantsBig_IMG1_TYPE = "1";
+                            MerchantsBig_IMG2 = split[1];
+                            MerchantsBig_IMG2_TYPE = "1";
+                            MerchantsBig_IMG3 = split[2];
+                            MerchantsBig_IMG3_TYPE = "1";
+                            MerchantsBig_IMG4 = split[3];
+                            MerchantsBig_IMG4_TYPE = "1";
+                        }
+                        merchant_big_detail_name.setText(data.getString("mctName"));
+                        MCT_ID = data.getString("mctId");
+                        merchant_big_detail_scope.setText(data.getString("placeName"));
+                        merchant_big_detail_address.setText(data.getString("mctCity"));
+                        merchant_big_detail_detail_address.setText(data.getString("mctAddress"));
+                        mctScope = data.getString("mctScope");
+                        merchant_big_detail_card_is.setImageURI(MerchantsBig_IDCard_IS);
+                        merchant_big_detail_card_the.setImageURI(MerchantsBig_IDCard_NO);
+                        merchant_big_detail_id_name.setText(data.getString("mctUserName"));
+                        merchant_big_detail_id_number.setText(data.getString("mctCartNum"));
+                        merchant_big_detail_card_year.setText(data.getString("mctCartAging"));
+                        //第二页的数据
+                        mctSettleType = data.getString("mctSettleType");
+                        mctSettleLegal = data.getString("mctSettleLegal");
+                        mctBankRegion = data.getString("mctBankRegion");
+                        mctBankNum = data.getString("mctBankNum");
+                        mctBankType = data.getString("bankName");
+                        mctBankType_ID = data.getString("mctBankType");
+                        mctBankUser = data.getString("mctBankUser");
+                        mctBankPhone = data.getString("mctBankPhone");
+                        //第三页数据
+                        mctPermitType = data.getString("mctPermitType");
+                        mctPermitNum = data.getString("mctPermitNum");
+                        mctPermitAging = data.getString("mctPermitAging");
+                        mctPhoneLo = data.getString("mctPhoneLo");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                Failuer(failuer.getEcode(), failuer.getEmsg());
+                showToast("接口请求失败了");
+            }
+        });
+
+
     }
 }
