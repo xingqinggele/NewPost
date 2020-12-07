@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -515,7 +516,7 @@ public class CooperExpandActivity extends BaseActivity implements View.OnClickLi
 
            @Override
            public void onFailure(OkHttpException failuer) {
-
+               Failuer(failuer.getEcode(),failuer.getEmsg());
            }
        });
    }
@@ -846,6 +847,8 @@ public class CooperExpandActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onFailure(OkHttpException failuer) {
+                Log.e("aa","11111111111");
+                Log.e("aa",failuer.getEmsg());
                 Failuer(failuer.getEcode(),failuer.getEmsg());
             }
         });

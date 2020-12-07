@@ -23,6 +23,11 @@
     <color name="me_bank_card_tv3">#272727</color>
     <color name="me_bank_card_view">#E5E5E5</color>
     <color name="pale_green">#98F898</color>
+<!--    choose-->
+    <color name="pale_choose">#186090</color>
+
+
+
 
 
 </resources>

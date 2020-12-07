@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F3F3F3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/lecturehalldetails_title" />
+
+        <LinearLayout
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:padding="5dp"
+                android:src="@mipmap/back_left" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_toRightOf="@+id/iv_back"
+            android:text="消息详情"
+            android:textColor="@color/post_while"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/main_home_line_bg"
+        android:layout_marginTop="-40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginRight="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20201109汇拓客交易分润日报报表下载通知"
+                android:textColor="#ff333333"
+                android:textSize="15sp"
+                />
+
+        <View
+            android:background="#DCDCDC"
+            android:layout_marginRight="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginLeft="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您20201112的交易分润日报已经生成，下载地址：
+https://htk.lakala.com/report/dowload?id=41601856，密码：993782
+请使用PC端下载，手机端暂不支持下载, 推荐使用谷歌浏览器下载。下载链接有效时间为15天，请及时下载。"
+                android:textColor="#ff5b5b5b"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp"
+                android:lineSpacingMultiplier="1.1"
+                />
+
+            <TextView
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-10-25"
+                android:textColor="#ff5b5b5b"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+</LinearLayout>

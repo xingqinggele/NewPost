@@ -49,7 +49,6 @@ public class CooperFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.cooper_fragment_expand:
-//                startActivity(new Intent(getActivity(), CooperExpandScanActivity.class));
                 startActivity(new Intent(getActivity(), CooperExpandActivity.class));
                 break;
         }

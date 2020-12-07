@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#F3F3F3"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_above="@+id/constrain_my1"
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!--appbarlayout里边的东西可以隐藏 -->
+        <android.support.design.widget.AppBarLayout
+            app:elevation="0dp"
+            android:background="#F3F3F3"
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                app:layout_scrollFlags="scroll"
+                android:id="@+id/rela_my2"
+                android:background="@drawable/main_home_line_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:gravity="center"
+                    android:drawablePadding="8dp"
+                    android:drawableLeft="@mipmap/screening_iv"
+                    android:textStyle="bold"
+                    android:id="@+id/tv1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="筛选"
+                    android:textColor="#0D5482"
+                    android:textSize="18sp"
+                    />
+
+                <View
+                    android:id="@+id/ve1"
+                    android:background="#E5E5E5"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/tv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/ve1"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_number1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2,723"
+                    android:textColor="#ff333333"
+                    android:textSize="32sp"
+                    />
+
+                <LinearLayout
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/tv_number1"
+                    android:id="@+id/terminal_manage_line1"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"
+                        android:background="#186090"
+                        android:layout_width="4dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="可划拨终端数(台)"
+                        android:textColor="#ff4e4e4e"
+                        android:textSize="15sp"
+                        />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/main_home_line_bg"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/lin1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"
+                        android:background="#186090"
+                        android:layout_width="4dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请选择要划拨的终端ID"
+                        android:textColor="#ff4e4e4e"
+                        android:textSize="15sp"
+                        />
+
+                </LinearLayout>
+
+                <EditText
+                    android:imeOptions="actionSearch"
+                    android:paddingRight="20dp"
+                    android:drawableRight="@mipmap/seach_iv1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/lin1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/merchants_query_ed_search"
+                    android:textColor="#3096D9"
+                    android:textSize="15sp"
+                    android:hint="请输入序列号ID"
+                    android:paddingLeft="20dp"
+                    android:background="@drawable/merchantsquery_ed_bg"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
+
+            </RelativeLayout>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/main_home_line_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constrain_my1"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F3F3F3">
+        <View
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="#E5E5E5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <CheckBox
+            android:background="@drawable/chooser_chek_box_bg"
+            android:button="@null"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bt_sub"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_sub"
+            android:id="@+id/check_box"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/check_box_type"
+            android:layout_marginLeft="14dp"
+            app:layout_constraintLeft_toRightOf="@+id/check_box"
+            app:layout_constraintBottom_toBottomOf="@+id/check_box"
+            app:layout_constraintTop_toTopOf="@+id/check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全选"
+            android:textColor="#ff363636"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:textColor="#363636"
+            android:id="@+id/merchants_transfer_number"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/check_box"
+            app:layout_constraintTop_toTopOf="@+id/check_box"
+            app:layout_constraintLeft_toRightOf="@+id/check_box_type"
+            android:text="总计: 0台"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/bt_sub"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="确定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

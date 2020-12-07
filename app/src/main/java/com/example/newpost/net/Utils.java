@@ -3,6 +3,8 @@ package com.example.newpost.net;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * 作者：zb.
@@ -35,4 +37,16 @@ public class Utils {
     }
     return false;
   }
+
+
+
+    /**
+     * 隐藏软键盘
+     * @param view    :一般为EditText
+     */
+    public static void hideKeyboard(View view) {
+        InputMethodManager manager = (InputMethodManager) view.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }

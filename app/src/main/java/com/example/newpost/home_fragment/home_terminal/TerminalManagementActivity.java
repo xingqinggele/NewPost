@@ -1,18 +1,17 @@
 package com.example.newpost.home_fragment.home_terminal;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.newpost.R;
 import com.example.newpost.base.BaseActivity;
-import com.example.newpost.cooper_fragment.CooperExpandActivity;
-import com.example.newpost.home_fragment.home_merchants.merchantsquery.MerchantsQuery;
-import com.example.newpost.home_fragment.home_merchants.merchantstransfer.MerchantsTransferActivity;
-import com.example.newpost.home_fragment.home_merchants.merchantstransfer.MerchantsTransferPersonActivity;
+import com.example.newpost.home_fragment.home_terminal.merchantscallback.MerchantsCallbackActivity;
+import com.example.newpost.home_fragment.home_terminal.merchantsquery.MerchantsQuery;
+import com.example.newpost.home_fragment.home_terminal.merchantstransfer.MerchantsTransferPersonActivity;
 import com.example.newpost.net.HttpRequest;
 import com.example.newpost.net.OkHttpException;
 import com.example.newpost.net.RequestParams;
@@ -34,6 +33,7 @@ public class TerminalManagementActivity extends BaseActivity implements View.OnC
     private TextView terminal_manage_tv_number3;
     private RelativeLayout terminal_management_query;
     private RelativeLayout terminal_management_transfer;
+    private RelativeLayout terminal_management_callback;
     @Override
     protected int getLayoutId() {
         return R.layout.terminalmanagementactivity;
@@ -47,8 +47,10 @@ public class TerminalManagementActivity extends BaseActivity implements View.OnC
         terminal_manage_tv_number3 = findViewById(R.id.terminal_manage_tv_number3);
         terminal_management_query = findViewById(R.id.terminal_management_query);
         terminal_management_transfer = findViewById(R.id.terminal_management_transfer);
+        terminal_management_callback = findViewById(R.id.terminal_management_callback);
         terminal_management_query.setOnClickListener(this);
         terminal_management_transfer.setOnClickListener(this);
+        terminal_management_callback.setOnClickListener(this);
 
         iv_back.setOnClickListener(this);
     }
@@ -65,10 +67,17 @@ public class TerminalManagementActivity extends BaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.terminal_management_transfer:
+                //终端划拨
                 startActivity(new Intent(TerminalManagementActivity.this, MerchantsTransferPersonActivity.class));
                 break;
             case R.id.terminal_management_query:
+                //终端查询
                 startActivity(new Intent(TerminalManagementActivity.this, MerchantsQuery.class));
+                break;
+            case R.id.terminal_management_callback:
+                // 终端回调
+                startActivity(new Intent(TerminalManagementActivity.this, MerchantsCallbackActivity.class));
+
                 break;
         }
     }
@@ -80,9 +89,11 @@ public class TerminalManagementActivity extends BaseActivity implements View.OnC
             public void onSuccess(Object responseObj) {
                 try {
                     JSONObject result = new JSONObject(responseObj.toString());
-                    JSONObject data = new JSONObject(result.getJSONObject("data").toString());
-                    terminal_manage_tv_number1.setText(data.getString("posNumTotal"));
-                    terminal_manage_tv_number3.setText(data.getString("posNumActiva"));
+                    if (!TextUtils.equals(result.getString("data"), "null")){
+                        JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                        terminal_manage_tv_number1.setText(data.getString("posNumTotal"));
+                        terminal_manage_tv_number3.setText(data.getString("posNumActiva"));
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

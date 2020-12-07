@@ -251,7 +251,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/home_trading"
+                        android:id="@+id/home_line_team"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -267,7 +267,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="13dp"
-                            android:text="交易管理"
+                            android:text="我的团队"
                             android:textColor="#ff4e4e4e"
                             android:textSize="11sp" />
 
@@ -275,7 +275,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/home_earnings"
+                        android:id="@+id/home_line_trading"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -291,15 +291,40 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="13dp"
-                            android:text="收益管理"
+                            android:text="交易管理"
                             android:textColor="#ff4e4e4e"
                             android:textSize="11sp" />
 
 
                     </LinearLayout>
 
+                    <!--                    <LinearLayout-->
+                    <!--                        android:id="@+id/home_line_terminal"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:orientation="vertical">-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="32dp"-->
+                    <!--                            android:layout_height="32dp"-->
+                    <!--                            android:src="@mipmap/home_fun04" />-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginTop="13dp"-->
+                    <!--                            android:text="终端管理"-->
+                    <!--                            android:textColor="#ff4e4e4e"-->
+                    <!--                            android:textSize="11sp" />-->
+
+
+                    <!--                    </LinearLayout>-->
+
+
                     <LinearLayout
-                        android:id="@+id/home_line_terminal"
+                        android:id="@+id/home_line_earnings"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -315,12 +340,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="13dp"
-                            android:text="终端管理"
+                            android:text="收益管理"
                             android:textColor="#ff4e4e4e"
                             android:textSize="11sp" />
 
 
                     </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -332,7 +358,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/home_line_withdrawal"
+                        android:id="@+id/home_line_terminal"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -348,12 +374,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="13dp"
-                            android:text="提现"
+                            android:text="终端管理"
                             android:textColor="#ff4e4e4e"
                             android:textSize="11sp" />
 
 
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/home_line_cooper"
@@ -404,7 +431,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/home_line_in"
+                        android:id="@+id/home_line_list"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -420,7 +447,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="13dp"
-                            android:text="商户入网"
+                            android:text="排行榜"
                             android:textColor="#ff4e4e4e"
                             android:textSize="11sp" />
 

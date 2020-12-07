@@ -49,9 +49,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rgFooter = findViewById(R.id.rg_footer);
         rgFooter.setOnCheckedChangeListener(this);
         rgFooter.check(R.id.main_rb1);
-        String a = "{\"toId\": \"201112162546e60f79063c4f288ef05f7a6cd9752e\",\"list\": \"[{posId:\\\"123\\\",version:\\\"0\\\"}]\"}";
-        String str=a.toString().substring(a.toString().length()-1);
-        Log.e("2222----","....."+str);
     }
 
     @Override

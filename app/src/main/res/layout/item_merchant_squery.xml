@@ -7,14 +7,30 @@
     android:layout_marginTop="13dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
-
     <TextView
-        android:layout_marginTop="20dp"
+        android:id="@+id/query_tv1"
         android:layout_marginLeft="20dp"
-        android:id="@+id/query_state"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="状态"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:background="#186090"
+        android:layout_width="3dp"
+        android:layout_height="16dp"/>
+    <TextView
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:drawableRight="@mipmap/query_state_img"
+        app:layout_constraintBottom_toBottomOf="@+id/query_tv1"
+        app:layout_constraintTop_toTopOf="@+id/query_tv1"
+        android:textColor="#333333"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/query_state"
+        app:layout_constraintLeft_toRightOf="@+id/query_tv1"
+        android:text="激活"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -23,11 +39,15 @@
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/query_state"
         app:layout_constraintTop_toBottomOf="@+id/query_state"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
+        android:layout_width="40dp"
+        android:layout_height="80dp"/>
 
     <TextView
-        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:textColor="#9F9F9F"
+        android:drawablePadding="7dp"
+        android:drawableLeft="@mipmap/query_tv_name_img"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:id="@+id/query_tv_name"
         android:text="POS机名称：魔方"
@@ -36,8 +56,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+
+
+
     <TextView
-        android:layout_marginTop="5dp"
+        android:textColor="#9F9F9F"
+        android:textSize="15sp"
+        android:drawablePadding="7dp"
+        android:drawableLeft="@mipmap/query_tv_type_img"
+        android:layout_marginTop="20dp"
         android:id="@+id/query_tv_type"
         android:text="活动类型：传统POS刷够返活动"
         app:layout_constraintLeft_toLeftOf="@+id/query_tv_name"
@@ -59,6 +86,8 @@
         android:layout_height="1dp"/>
 
     <TextView
+        android:textColor="#9F9F9F"
+        android:textSize="13sp"
         android:layout_marginLeft="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/query_tv_detail"
@@ -69,6 +98,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:textSize="12sp"
         android:id="@+id/query_tv_detail"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="10dp"
@@ -78,7 +108,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/query_view"
         android:text="详情查询"
-        android:textColor="#ff0d5482"
+        android:textColor="#0D5482"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F3F3F3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/lecturehalldetails_title" />
+
+        <LinearLayout
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:padding="5dp"
+                android:src="@mipmap/back_left" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_toRightOf="@+id/iv_back"
+            android:text="实战讲堂"
+            android:textColor="@color/post_while"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/main_home_line_bg"
+        android:layout_marginTop="-50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于商户管理"
+                android:textColor="#ff0d5482"
+                android:textSize="21sp"
+                />
+
+            <TextView
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-12-02"
+                android:textColor="#ff5b5b5b"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="这是内容"
+                android:textColor="#ff5b5b5b"
+                android:textSize="14sp"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+</LinearLayout>

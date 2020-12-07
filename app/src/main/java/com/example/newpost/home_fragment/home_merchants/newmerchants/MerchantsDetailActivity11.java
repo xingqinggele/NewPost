@@ -40,6 +40,7 @@ import com.example.newpost.utils.Utility;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -151,6 +152,9 @@ public class MerchantsDetailActivity11 extends BaseActivity implements View.OnCl
     //    初始化控件
     @Override
     protected void initView() {
+        //获取腾讯卡片识别状态
+        getTengXunType();
+
         // 获取本地保存的数据
         secretId = SPUtils.get(MerchantsDetailActivity11.this, "secretId", "-1").toString();
         secretKey = SPUtils.get(MerchantsDetailActivity11.this, "secretKey", "-1").toString();
@@ -776,6 +780,40 @@ public class MerchantsDetailActivity11 extends BaseActivity implements View.OnCl
         });
 
 
+    }
+
+    /************** 请求腾讯开关***************/
+    public void getTengXunType(){
+        RequestParams params = new RequestParams();
+        HttpRequest.getTengXunType(params, SPUtils.get(MerchantsDetailActivity11.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    JSONObject result = new JSONObject(responseObj.toString());
+                    if (TextUtils.equals(result.getString("data"), "null")) {
+                      //空的话默认不能使用
+                        OrcType = false;
+                    }else {
+                        JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                        String idCard = data.getString("idCard");
+                        if (idCard.equals("1")){
+                            OrcType = true;
+                        }else {
+                            OrcType = false;
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                OrcType = false;
+                Failuer(failuer.getEcode(), failuer.getEmsg());
+            }
+        });
     }
 
 }

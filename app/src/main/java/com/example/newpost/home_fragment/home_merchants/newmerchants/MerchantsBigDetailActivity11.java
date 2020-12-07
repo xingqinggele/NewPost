@@ -131,7 +131,7 @@ public class MerchantsBigDetailActivity11 extends BaseActivity implements View.O
     // 身份证反面
     private SimpleDraweeView merchant_big_detail_card_the;
     // 腾讯云ORC是否启用状态
-    private boolean OrcType = false;  // true 启用，false不启用
+    private boolean OrcType = true;  // true 启用，false不启用
     private static final int Id_POSITIVE = 00201;   // 身份证正面
     private static final int Id_REVERSE = 00202;    // 身份证反面
     private String secretId;  // 腾讯秘钥ID
@@ -787,5 +787,40 @@ public class MerchantsBigDetailActivity11 extends BaseActivity implements View.O
         });
 
 
+    }
+
+
+    /************** 请求腾讯开关***************/
+    public void getTengXunType(){
+        RequestParams params = new RequestParams();
+        HttpRequest.getTengXunType(params, SPUtils.get(MerchantsBigDetailActivity11.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    JSONObject result = new JSONObject(responseObj.toString());
+                    if (TextUtils.equals(result.getString("data"), "null")) {
+                        //空的话默认不能使用
+                        OrcType = false;
+                    }else {
+                        JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                        String idCard = data.getString("idCard");
+                        if (idCard.equals("1")){
+                            OrcType = true;
+                        }else {
+                            OrcType = false;
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                OrcType = false;
+                Failuer(failuer.getEcode(), failuer.getEmsg());
+            }
+        });
     }
 }

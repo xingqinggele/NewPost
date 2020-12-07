@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:openDrawer="start"
+    android:id="@+id/drawer_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:background="#F3F3F3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:background="@mipmap/message_title_img"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="134dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:padding="5dp"
+                        android:src="@mipmap/back_left" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_toRightOf="@+id/iv_back"
+                    android:text="终端回调"
+                    android:textColor="@color/post_while"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+            <FrameLayout
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/my_tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_gravity="center_horizontal"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextAppearance="@style/TabLayoutTextSize1"
+                    app:tabTextColor="#FFFFFF"
+                    app:tabGravity="fill"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabMaxWidth="0.0dp"
+                    app:tabMode="fixed"
+                    app:tabBackground="@android:color/transparent"
+                    app:tabRippleColor="@android:color/transparent"
+                    />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/my_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <!--侧边栏内容-->
+    <RelativeLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end">
+
+
+        <include layout="@layout/merchantscallback_content_layout"/>
+
+
+        <!--添加脚布局-->
+        <View
+            android:layout_above="@+id/ine1"
+            android:background="#E5E5E5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RadioGroup
+            android:id="@+id/ine1"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:background="@drawable/choose_rabtn1"
+                android:button="@null"
+                android:textSize="17sp"
+                android:id="@+id/footer_item_setting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="重置"
+                android:textColor="@drawable/rbtn_choose_txt"/>
+
+            <RadioButton
+                android:background="@drawable/choose_rabtn1"
+                android:button="@null"
+                android:checked="true"
+                android:textSize="17sp"
+                android:id="@+id/footer_item_out"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@drawable/rbtn_choose_txt"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+
+
+
+</android.support.v4.widget.DrawerLayout>

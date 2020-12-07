@@ -68,7 +68,7 @@
         <!--        首页   收益管理-->
         <activity android:name=".home_fragment.home_earnings.EarningsManagementActivity" />
         <!--        商户查询-->
-        <activity android:name=".home_fragment.home_merchants.merchantsquery.MerchantsQuery" />
+        <activity android:name=".home_fragment.home_terminal.merchantsquery.MerchantsQuery" />
         <!--        首页排行榜-->
         <activity android:name=".home_fragment.home_list.EarningsRankingActivity" />
         <!--        注册-->
@@ -102,11 +102,25 @@
         <!--        新增企业商户3-->
         <activity android:name=".home_fragment.home_merchants.newmerchants.MerchantsBigDetailActivity33" />
         <!--        终端划拨选择下级-->
-        <activity android:name=".home_fragment.home_merchants.merchantstransfer.MerchantsTransferPersonActivity" />
+        <activity android:name=".home_fragment.home_terminal.merchantstransfer.MerchantsTransferPersonActivity" />
         <!--        终端划拨-->
-        <activity android:name=".home_fragment.home_merchants.merchantstransfer.MerchantsTransferActivity" />
+        <activity android:name=".home_fragment.home_terminal.merchantstransfer.MerchantsTransferActivity" />
         <!-- 提交驳回界面-->
         <activity android:name=".home_fragment.home_merchants.newmerchants.state.MerchantsDetailFailureActivity" />
+        <!--        实战讲堂-->
+        <activity android:name=".home_fragment.home_lecture_hall.LecturehallActivity" />
+        <!--        我的团队-->
+        <activity android:name=".home_fragment.home_team.HomeTeamActivity" />
+        <!--        终端回调-->
+        <activity android:name=".home_fragment.home_terminal.merchantscallback.MerchantsCallbackActivity" />
+        <!--        实战讲堂详情-->
+        <activity android:name=".home_fragment.home_lecture_hall.LecturehallDetailsActivity" />
+        <!--        消息详情-->
+        <activity android:name=".home_fragment.home_message.MessageDetelisActivity" />
+        <!--        划拨成功-->
+        <activity android:name=".home_fragment.home_terminal.merchantstransfer.MerchatsTransferSuccesActivity" />
+        <!--        收支明细-->
+        <activity android:name=".me_fragment.MePaymentActivity" />
     </application>
 
 </manifest>

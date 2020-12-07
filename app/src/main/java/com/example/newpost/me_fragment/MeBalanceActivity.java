@@ -16,6 +16,8 @@ import com.example.newpost.base.BaseActivity;
 public class MeBalanceActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout iv_back;
     private LinearLayout mebalance_withdrawal;
+    private LinearLayout me_payment;
+
     @Override
     protected int getLayoutId() {
         return R.layout.mebalanceactivity;
@@ -25,8 +27,10 @@ public class MeBalanceActivity extends BaseActivity implements View.OnClickListe
     protected void initView() {
         iv_back = findViewById(R.id.iv_back);
         mebalance_withdrawal = findViewById(R.id.mebalance_withdrawal);
+        me_payment = findViewById(R.id.me_payment);
         iv_back.setOnClickListener(this);
         mebalance_withdrawal.setOnClickListener(this);
+        me_payment.setOnClickListener(this);
     }
 
     @Override
@@ -36,13 +40,17 @@ public class MeBalanceActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.mebalance_withdrawal:
-                startActivity(new Intent(MeBalanceActivity.this,MeBalanceWitndActivity.class));
+                startActivity(new Intent(MeBalanceActivity.this, MeBalanceWitndActivity.class));
                 break;
+            case R.id.me_payment:
+                startActivity(new Intent(MeBalanceActivity.this, MePaymentActivity.class));
+                break;
+
         }
     }
 }

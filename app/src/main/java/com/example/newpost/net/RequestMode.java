@@ -1,6 +1,6 @@
 package com.example.newpost.net;
 
-import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+import com.example.newpost.home_fragment.home_terminal.merchantstransfer.bean.MermachineBean;
 
 import java.io.File;
 import java.util.List;

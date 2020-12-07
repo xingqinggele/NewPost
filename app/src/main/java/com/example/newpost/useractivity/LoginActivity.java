@@ -77,7 +77,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Com
      */
     public void initData() {
         if (SPUtils.contains(LoginActivity.this, "userName")) {
-            Log.e("本地存储", SPUtils.get(LoginActivity.this, "userName", "-1").toString() + SPUtils.get(LoginActivity.this, "passWord", "-1").toString());
             getLogin(SPUtils.get(LoginActivity.this, "userName", "-1").toString(), SPUtils.get(LoginActivity.this, "passWord", "-1").toString());
         }
     }

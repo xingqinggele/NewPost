@@ -1,10 +1,9 @@
 package com.example.newpost.net;
 
-import android.net.wifi.WifiInfo;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+import com.example.newpost.home_fragment.home_terminal.merchantstransfer.bean.MermachineBean;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -14,13 +13,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Credentials;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;

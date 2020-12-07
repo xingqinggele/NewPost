@@ -1,5 +1,6 @@
 package com.example.newpost.home_fragment.home_message.message_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.newpost.R;
 import com.example.newpost.adapter.WriteReportAdapter;
 import com.example.newpost.ceshi.Bean;
 import com.example.newpost.home_fragment.home_message.MessageActivity;
+import com.example.newpost.home_fragment.home_message.MessageDetelisActivity;
 import com.example.newpost.home_fragment.home_message.adapter.SystemMeAdapter;
 
 import java.util.ArrayList;
@@ -63,6 +65,9 @@ public class SystemMessageFragment extends Fragment implements SwipeRefreshLayou
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 //点击Item事件
+                Intent intent = new Intent(getActivity(), MessageDetelisActivity.class);
+                intent.putExtra("ID",position+"");
+                startActivity(intent);
             }
         });
 

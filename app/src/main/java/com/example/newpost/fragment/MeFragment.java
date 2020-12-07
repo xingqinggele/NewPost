@@ -1,6 +1,7 @@
 package com.example.newpost.fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.newpost.R;
+import com.example.newpost.dialog.MyDialog;
 import com.example.newpost.home_fragment.home_message.MessageActivity;
 import com.example.newpost.me_fragment.MeAboutUsActivity;
 import com.example.newpost.me_fragment.MeBalanceActivity;
@@ -125,7 +127,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.me_relative_clean:
                 //清理缓存
-
+                showDialog();
                 break;
             case R.id.me_relative_about_us:
                 //关于我们
@@ -150,7 +152,35 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 //                我的银行卡
                 startActivity(new Intent(getActivity(), MeBankCradActivity.class));
                 break;
+
         }
+    }
+
+
+    private void showDialog() {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_merchants_transfer, null);
+        TextView textView = view.findViewById(R.id.dialog_tv1);
+        TextView dialog_cancel = view.findViewById(R.id.dialog_cancel);
+        TextView dialog_determine = view.findViewById(R.id.dialog_determine);
+        textView.setText("您确定要删除缓存数据吗？");
+        Dialog dialog = new MyDialog(getActivity(), true, true, (float) 0.7).setNewView(view);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        dialog_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_determine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //提交
+                dialog.dismiss();
+              DataCleanManager.clearAllCache(getActivity());
+                me_clear_cache.setText("0k");
+            }
+        });
     }
 
     /**

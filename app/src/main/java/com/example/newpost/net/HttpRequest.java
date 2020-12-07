@@ -1,6 +1,6 @@
 package com.example.newpost.net;
 
-import com.example.newpost.home_fragment.home_merchants.merchantstransfer.bean.MermachineBean;
+import com.example.newpost.home_fragment.home_terminal.merchantstransfer.bean.MermachineBean;
 
 import java.util.List;
 
@@ -81,6 +81,19 @@ public class HttpRequest {
         RequestMode.postRequest(Urls.commUrls+"pos/mct/addMerchant", params, token,callback, null);
     }
 
+
+    /**
+     * 获取腾讯文字识别type
+     * @param params
+     * @param callback
+     */
+    public static void getTengXunType(RequestParams params,String token, ResponseCallback callback) {
+        RequestMode.postRequest(Urls.commUrls+"pos/param/getTengXunType", params, token,callback, null);
+    }
+
+
+
+
     /**
      * 查询商户
      * @param params
@@ -99,6 +112,7 @@ public class HttpRequest {
         RequestMode.postRequest(Urls.commUrls+"pos/mct/updMerchant", params, token,callback, null);
     }
 
+
  /**
      * 获取分润表
      * @param params
@@ -107,6 +121,7 @@ public class HttpRequest {
     public static void getProfit(RequestParams params,String token, ResponseCallback callback) {
         RequestMode.postRequest1(Urls.commUrls+"pos/api/getProfit", params, token,callback, null);
     }
+
 
 /**
      * 修改分润表
@@ -153,6 +168,15 @@ public class HttpRequest {
         RequestMode.postRequest2(Urls.commUrls+"pos/pos/updPosListTo", params, token,mermachineBeans,callback, null);
     }
 
+    /**
+     * 终端回调
+     * @param params
+     * @param callback
+     */
+    public static void updPosListFrom(RequestParams params, String token, List<MermachineBean> mermachineBeans ,ResponseCallback callback) {
+        RequestMode.postRequest2(Urls.commUrls+"pos/pos/updPosListFrom", params, token,mermachineBeans,callback, null);
+    }
+
      /**
      * 终端划列表
      * @param params
@@ -161,6 +185,8 @@ public class HttpRequest {
     public static void getPosList(RequestParams params,String token, ResponseCallback callback) {
         RequestMode.postRequest1(Urls.commUrls+"pos/pos/getPosList", params, token,callback, null);
     }
+
+
 
 
 }

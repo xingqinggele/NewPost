@@ -177,7 +177,8 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
 
     @Override
     protected void initView() {
-
+        //请求腾讯银行卡识别状态
+        getTengXunType();
 
         secretId = SPUtils.get(MerchantsDetailActivity22.this, "secretId", "-1").toString();
         secretKey = SPUtils.get(MerchantsDetailActivity22.this, "secretKey", "-1").toString();
@@ -788,5 +789,37 @@ public class MerchantsDetailActivity22 extends BaseActivity implements View.OnCl
         });
     }
 
+    /************** 请求腾讯开关***************/
+    public void getTengXunType(){
+        RequestParams params = new RequestParams();
+        HttpRequest.getTengXunType(params, SPUtils.get(MerchantsDetailActivity22.this, "Token", "-1").toString(), new ResponseCallback() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    JSONObject result = new JSONObject(responseObj.toString());
+                    if (TextUtils.equals(result.getString("data"), "null")) {
+                        //空的话默认不能使用
+                        isOrc = false;
+                    }else {
+                        JSONObject data = new JSONObject(result.getJSONObject("data").toString());
+                        String bankCare = data.getString("bankCard");
+                        if (bankCare.equals("1")){
+                            isOrc = true;
+                        }else {
+                            isOrc = false;
+                        }
+                    }
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException failuer) {
+                isOrc = false;
+                Failuer(failuer.getEcode(), failuer.getEmsg());
+            }
+        });
+    }
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F3F3F3">
+    <RelativeLayout
+        android:id="@+id/rela_my1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/merchants_query_title" />
+
+        <RelativeLayout
+            android:id="@+id/merchant_squery_relative"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="25dp"
+                    android:padding="5dp"
+                    android:src="@mipmap/back_left" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:layout_toRightOf="@+id/iv_back"
+                android:text="我的团队"
+                android:textColor="@color/post_while"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:paddingRight="20dp"
+            android:drawableRight="@mipmap/seach_iv"
+            android:imeOptions="actionSearch"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/merchant_squery_relative"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/merchants_person_ed_search"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#2488c9"
+            android:textSize="15sp"
+            android:hint="请输入伙伴推荐码、手机号或姓名"
+            android:paddingLeft="20dp"
+            android:background="@drawable/merchantsquery_trans_ed_bg"
+            android:layout_marginRight="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"/>
+
+        <TextView
+            android:id="@+id/merchant_transfer_number"
+            android:layout_alignLeft="@+id/merchants_person_ed_search"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/merchants_person_ed_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="累计团队：0人"
+            android:textColor="#ffffffff"
+            android:textSize="14sp"
+            />
+
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

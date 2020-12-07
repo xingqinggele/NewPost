@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/constraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <CheckBox
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/checkBox_item"
+        android:background="@mipmap/checkbox_empty"
+        android:clickable="false"
+        android:button="@null"
+        android:focusable="false"
+        />
+
+    <TextView
+        android:id="@+id/cooser_item_tv"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox_item"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBox_item"
+        app:layout_constraintTop_toTopOf="@+id/checkBox_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="序列号:"
+        android:textColor="#ff363636"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:background="@drawable/chooer_text_bg"
+        android:id="@+id/cooser_item_tv1"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/cooser_item_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/cooser_item_tv"
+        app:layout_constraintTop_toTopOf="@+id/cooser_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电签POS"
+        android:textColor="#ff186090"
+        android:textSize="10sp"
+        />
+
+    <TextView
+        android:background="@drawable/chooer_text_bg"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/cooser_item_tv1"
+        app:layout_constraintBottom_toBottomOf="@+id/cooser_item_tv"
+        app:layout_constraintTop_toTopOf="@+id/cooser_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电签POS"
+        android:textColor="#ff186090"
+        android:textSize="10sp"
+        />
+
+    <TextView
+        android:id="@+id/cooser_item_tv_number"
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="@+id/cooser_item_tv"
+        app:layout_constraintTop_toBottomOf="@+id/cooser_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00003102962002212345"
+        android:textColor="#ff2d2d2d"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/cooser_item_tv_activity"
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="@+id/cooser_item_tv_number"
+        app:layout_constraintTop_toBottomOf="@+id/cooser_item_tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="活动：电签POS活动(非押版)"
+        android:textColor="#ff2d2d2d"
+        android:textSize="15sp"
+        />
+
+    <View
+        android:background="#E5E5E5"
+        android:layout_marginTop="17dp"
+        app:layout_constraintTop_toBottomOf="@+id/cooser_item_tv_activity"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</android.support.constraint.ConstraintLayout>

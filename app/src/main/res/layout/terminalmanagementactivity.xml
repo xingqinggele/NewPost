@@ -85,7 +85,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2,723"
+                    android:text="0"
                     android:textColor="#ff333333"
                     android:textSize="32sp"
                     />
@@ -149,7 +149,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/terminal_manage_v1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1,869"
+                    android:text="0"
                     android:textColor="#ff333333"
                     android:textSize="18sp"
                     />
@@ -162,7 +162,7 @@
                     android:id="@+id/terminal_manage_tv_number3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1,833"
+                    android:text="0"
                     android:textColor="#ff333333"
                     android:textSize="18sp"
                     />
@@ -328,6 +328,7 @@
 
                 </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/terminal_management_callback"
                     android:layout_marginTop="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

@@ -50,17 +50,20 @@
         </RelativeLayout>
 
         <EditText
-             android:imeOptions="actionDone"
+            android:paddingRight="21dp"
+            android:drawableRight="@mipmap/seach_iv"
+             android:imeOptions="actionSearch"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/merchant_squery_relative"
             android:maxLines="1"
             android:singleLine="true"
             android:id="@+id/merchants_person_ed_search"
-            android:textColor="#3096D9"
-            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#2488C9"
+            android:textSize="13sp"
             android:hint="请输入成员姓名或手机号"
             android:paddingLeft="20dp"
-            android:background="@drawable/merchantsquery_ed_bg"
+            android:background="@drawable/merchantsquery_trans_ed_bg"
             android:layout_marginRight="22dp"
             android:layout_marginLeft="22dp"
             android:layout_width="match_parent"
@@ -79,7 +82,7 @@
             />
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+   ` <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,6 +93,6 @@
             android:layout_height="match_parent"
             />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>`
 
 </LinearLayout>
